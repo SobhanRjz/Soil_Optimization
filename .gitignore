@@ -107,3 +107,28 @@ celerybeat-schedule
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
+
+# PLAXIS output and temporary files
+*.rr*
+*.full
+*.h00
+*.inp
+*.meshinfo
+*.p2dx
+*.meshoutput
+*.meshinput
+*.meshtemp
+*.opi
+*.msh
+*.plxml
+*.p2dxlog
+
+# Additional PLAXIS files you might want to ignore
+*.p2dx.tmp
+*.p2dres
+*.log
+*.csv
+*.txt
+*.step
+*.vlo
