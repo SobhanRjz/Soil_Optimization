@@ -23,9 +23,11 @@ class PlaxisModelInput:
         
         # Load geometry parameters from config
         self.__plate_length = MODEL_GEOMETRY['plate_length']
+        self.__geogrid_VerticalSpace = STRUCTURAL_MATERIALS['geogrid']['VerticalSpace']
         self.__geogrid_length = self.__plate_length
         self.__geogrid_teta = MODEL_GEOMETRY['geogrid_teta']
         self.__step_phase = MODEL_GEOMETRY['step_phase']
+
         self.__load_value = MODEL_GEOMETRY['load_value']
         self.__contour_points = None
         self.phase_names = []
@@ -88,11 +90,12 @@ class PlaxisModelInput:
         self.__plate = self.__g_i.platemat()
         self.__plate.MaterialType = STRUCTURAL_MATERIALS['plate']['type']
         self.__plate.Identification = "Plate"
-        self.__plate.setproperties("w", STRUCTURAL_MATERIALS['plate']['width'])
+        self.__plate.setproperties("w", STRUCTURAL_MATERIALS['plate']['UnitWeight'])
         self.__plate.setproperties("EA1", STRUCTURAL_MATERIALS['plate']['ea1'])
         self.__plate.setproperties("EI", STRUCTURAL_MATERIALS['plate']['ei'])
         self.__plate.setproperties("StructNu", 0.2)
         
+
     def __assign_materials(self):
         """Assign materials to layers"""
         logger.info("Assigning materials...")
@@ -104,9 +107,10 @@ class PlaxisModelInput:
         self.__g_i.gotostructures()
         
         # Create shotcrete line
-        shotcrete_line = self.__g_i.plate((0, 0), (0, -10))
+        shotcrete_line = self.__g_i.plate((0, 0), (0, -self.__plate_length))
         shotcrete_line[2].setproperties("Plate.Material", self.__plate)
         
+
         # Create horizontal lines
         for y in range(-self.__step_phase, - self.__plate_length - 1, -self.__step_phase):
             self.__g_i.line((0, y), (self.__contour_points[2][0], y))
@@ -114,7 +118,7 @@ class PlaxisModelInput:
         # Create geogrids
         geogrid_y_offset = self.__geogrid_length * math.tan(math.radians(self.__geogrid_teta))
 
-        for y in np.arange(-1.5, -self.__plate_length, -self.__step_phase):
+        for y in np.arange(-1.5, -self.__plate_length, -self.__geogrid_VerticalSpace):
             geogrid = self.__g_i.geogrid((0, y), (-self.__geogrid_length, y - geogrid_y_offset))
             geogrid[2].setproperties("Geogrid.Material", self.__geogrid)
 
@@ -212,5 +216,7 @@ class PlaxisModelInput:
         self.__create_phase()
         self.__run()
         self.__save()
-        
+        #add view InitialPhase
+        self.__g_i.gotoviews()
+        self.__g_i.view(self.__g_i.Phases[0])
         logger.info(f"Total execution time: {time.time() - start_time:.2f} seconds")

@@ -2,9 +2,11 @@ from enum import Enum
 
 # Mesh size options
 class MeshSize(Enum):
+    VERY_COARSE = 0.12
     COARSE = 0.08
     MEDIUM = 0.06 
     FINE = 0.04
+    VERY_FINE = 0.03
 
 # PLAXIS server configuration
 PLAXIS_CONFIG = {
@@ -23,7 +25,6 @@ PLAXIS_CONFIG = {
 # Model geometry parameters
 MODEL_GEOMETRY = {
     'plate_length': 10,  # meters
-    'contour_width': 40, # meters
     'step_phase': 2,     # meters
     'load_value': 15,    # kN/m
     'geogrid_teta': 10,   # degrees
@@ -49,12 +50,15 @@ SOIL_PROPERTIES = {
 STRUCTURAL_MATERIALS = {
     'geogrid': {
         'type': 'Elastic',
-        'ea1': 123000
+        'ea1': 123000, #KN/m
+        'HorizentalSpace': 10, #M
+        'VerticalSpace': 2 #M
     },
     'plate': {
         'type': 'Elastic',
-        'width': 2.3,
-        'ea1': 2000000,
-        'ei': 1667
+        'UnitWeight': 2.3,  #unit Weight KN/m/m
+        'ea1': 2000000, #KN/m
+        'ei': 1667 #KN/m2/m
+
     }
 }

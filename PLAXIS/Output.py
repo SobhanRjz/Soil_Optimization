@@ -7,6 +7,7 @@ import logging
 import time
 from Config.config import PLAXIS_CONFIG, MODEL_GEOMETRY
 from dataclasses import dataclass
+import numpy as np
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -22,7 +23,7 @@ class OutputClassData:
     phaseName: str
 
 class PlaxisModelOutput:
-    def __init__(self, model_input, host=PLAXIS_CONFIG['output']['host'], 
+    def __init__(self, model_input = None, host=PLAXIS_CONFIG['output']['host'], 
                  port=PLAXIS_CONFIG['output']['port'], 
                  password=PLAXIS_CONFIG['output']['password']):
         self.__host = host
@@ -34,7 +35,7 @@ class PlaxisModelOutput:
 
         # Load geometry parameters from config
         self.__plate_length = MODEL_GEOMETRY['plate_length']
-        self.__phase_names = model_input.phase_names
+        self.__phase_names = model_input.phase_names if model_input else None
         self.__start_time = time.time()
 
     def __connect(self):
@@ -112,8 +113,8 @@ class PlaxisModelOutput:
 
         # Iterate through all phases
         # Get only first and last phase
-        phases = [self.__g_i.Phases[-1], self.__g_i.Phases[-2]]
-        for phase in phases:
+        #phases = [self.__g_i.Phases[-1], self.__g_i.Phases[-2]]
+        for phase in self.__g_i.Phases[:]:
             # retrieve values for this phase
             x_coords = self.__getnodeid_x(phase)
             y_coords = self.__getnodeid_y(phase)
@@ -121,10 +122,20 @@ class PlaxisModelOutput:
             uy_values = self.__getnodeid_uy(phase)
 
             # Process and store data for each point
-            for x, y, ux, uy in zip(x_coords, y_coords, ux_values, uy_values):
-                utotal = math.sqrt(ux**2 + uy**2)  # Calculate total displacement
-                point_data = OutputClassData(x=x, y=y, ux=ux, uy=uy, utotal=utotal, phaseName=phase.Name.value)
-                self.__output_data.append(point_data)
+            # Use numpy for faster vector operations
+            
+            utotal = np.sqrt(np.array(ux_values)**2 + np.array(uy_values)**2)
+            
+            # Pre-allocate list size for better performance
+            # Get indices of top 100 utotal values
+            top_100_indices = np.argsort(utotal)[-10:]
+            
+            new_data = [
+                OutputClassData(x=x_coords[i], y=y_coords[i], ux=ux_values[i], uy=uy_values[i], 
+                              utotal=utotal[i], phaseName=phase.Name.value)
+                for i in top_100_indices
+            ]
+            self.__output_data.extend(new_data)
 
         # Sort output data based on total displacement (utotal)
         self.__output_data.sort(key=lambda x: x.utotal, reverse=True)
