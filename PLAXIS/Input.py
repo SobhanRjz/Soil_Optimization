@@ -28,6 +28,7 @@ class PlaxisModelInput:
         self.__step_phase = MODEL_GEOMETRY['step_phase']
         self.__load_value = MODEL_GEOMETRY['load_value']
         self.__contour_points = None
+        self.phase_names = []
 
     def __connect(self):
         """Establish connection to PLAXIS server"""
@@ -124,11 +125,12 @@ class PlaxisModelInput:
     def __automesh(self):
         logger.info("Generating mesh...")
         self.__g_i.gotomesh()
-        mesh = self.__g_i.mesh(0.06) # medium
-    
+        mesh = self.__g_i.mesh(MODEL_GEOMETRY['mesh_size']) # medium
+
     def __create_phase(self):
         logger.info("Creating phases...")
         self.__g_i.gotostages()
+
 
         #Activate line load for IntialPhases
         line_loads = self.__g_i.LineLoads
@@ -153,6 +155,7 @@ class PlaxisModelInput:
         for indexS in range(1, int(abs(self.__plate_length / 2)) + 1):
             #create New Phase
             new_phase = self.__g_i.phase(self.__g_i.Phases[-1])
+            self.phase_names.append(new_phase.Identification.value)
 
             # Deactivate Soils
             soilName = f"Soil_1_{indexS}"

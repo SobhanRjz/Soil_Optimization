@@ -1,3 +1,11 @@
+from enum import Enum
+
+# Mesh size options
+class MeshSize(Enum):
+    COARSE = 0.08
+    MEDIUM = 0.06 
+    FINE = 0.04
+
 # PLAXIS server configuration
 PLAXIS_CONFIG = {
     'input': {
@@ -18,8 +26,10 @@ MODEL_GEOMETRY = {
     'contour_width': 40, # meters
     'step_phase': 2,     # meters
     'load_value': 15,    # kN/m
-    'geogrid_teta': 10   # degrees
+    'geogrid_teta': 10,   # degrees
+    'mesh_size': MeshSize.MEDIUM.value  # meters
 }
+
 
 # Soil material properties
 SOIL_PROPERTIES = {

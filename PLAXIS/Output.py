@@ -19,9 +19,10 @@ class OutputClassData:
     ux: float
     uy: float
     utotal: float
+    phaseName: str
 
 class PlaxisModelOutput:
-    def __init__(self, host=PLAXIS_CONFIG['output']['host'], 
+    def __init__(self, model_input, host=PLAXIS_CONFIG['output']['host'], 
                  port=PLAXIS_CONFIG['output']['port'], 
                  password=PLAXIS_CONFIG['output']['password']):
         self.__host = host
@@ -33,12 +34,7 @@ class PlaxisModelOutput:
 
         # Load geometry parameters from config
         self.__plate_length = MODEL_GEOMETRY['plate_length']
-        self.__geogrid_length = self.__plate_length
-        self.__geogrid_teta = MODEL_GEOMETRY['geogrid_teta']
-        self.__contour_width = MODEL_GEOMETRY['contour_width']
-        self.__step_phase = MODEL_GEOMETRY['step_phase']
-        self.__load_value = MODEL_GEOMETRY['load_value']
-        self.__contour_points = None
+        self.__phase_names = model_input.phase_names
         self.__start_time = time.time()
 
     def __connect(self):
@@ -114,20 +110,21 @@ class PlaxisModelOutput:
         self.__connect()
         logger.info("Getting output from PLAXIS server...")
 
-        # Select the phase you want to analyze
-        phase = self.__g_i.Phase_5  # Replace [1] with the index of your desired phase
+        # Iterate through all phases
+        # Get only first and last phase
+        phases = [self.__g_i.Phases[-1], self.__g_i.Phases[-2]]
+        for phase in phases:
+            # retrieve values for this phase
+            x_coords = self.__getnodeid_x(phase)
+            y_coords = self.__getnodeid_y(phase)
+            ux_values = self.__getnodeid_ux(phase)
+            uy_values = self.__getnodeid_uy(phase)
 
-        # retrieve values
-        x_coords = self.__getnodeid_x(phase)
-        y_coords = self.__getnodeid_y(phase)
-        ux_values = self.__getnodeid_ux(phase)
-        uy_values = self.__getnodeid_uy(phase)
-
-        # Process and store data for each point
-        for x, y, ux, uy in zip(x_coords, y_coords, ux_values, uy_values):
-            utotal = math.sqrt(ux**2 + uy**2)  # Calculate total displacement
-            point_data = OutputClassData(x=x, y=y, ux=ux, uy=uy, utotal=utotal)
-            self.__output_data.append(point_data)
+            # Process and store data for each point
+            for x, y, ux, uy in zip(x_coords, y_coords, ux_values, uy_values):
+                utotal = math.sqrt(ux**2 + uy**2)  # Calculate total displacement
+                point_data = OutputClassData(x=x, y=y, ux=ux, uy=uy, utotal=utotal, phaseName=phase.Name.value)
+                self.__output_data.append(point_data)
 
         # Sort output data based on total displacement (utotal)
         self.__output_data.sort(key=lambda x: x.utotal, reverse=True)

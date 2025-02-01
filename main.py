@@ -15,7 +15,7 @@ def main():
     model = InputModel.PlaxisModelInput()
     model.Create_Model()
 
-    output = OutputModel.PlaxisModelOutput()
+    output = OutputModel.PlaxisModelOutput(model)
     output.GetOutput()
 
     end_time = time.time()
