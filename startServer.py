@@ -10,7 +10,8 @@ PORT_o = 10001
 PASSWORD = 'vkrAnSku2/x^$f8~'  # Define a password (up to user choice).
 
 # Start PLAXIS process
-plaxis_process = subprocess.Popen([PLAXIS_PATH, f'--AppServerPassword={PASSWORD}', f'--AppServerPort={PORT_i}'], shell=False)
+plaxis_process = subprocess.Popen([PLAXIS_PATH, f'--AppServerPassword={PASSWORD}', f'--AppServerPort={PORT_i}'], shell=True)
+plaxis_process = subprocess.Popen([PLAXIS_PATH, f'--AppServerPassword={PASSWORD}', f'--AppServerPort={10002}'], shell=True)
 
 # Try connecting until PLAXIS is ready
 connected = False
@@ -20,6 +21,7 @@ attempt = 0
 while not connected and attempt < max_attempts:
     try:
         s_i, g_i = new_server('localhost', PORT_i, password=PASSWORD)
+        s_i, g_i = new_server('localhost', 10002, password=PASSWORD)
         connected = True
     except:
         attempt += 1

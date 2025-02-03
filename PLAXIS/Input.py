@@ -81,11 +81,17 @@ class PlaxisModelInput:
         """Create geogrid and plate materials"""
         logger.info("Creating structural materials...")
         # Geogrid material
+        E = STRUCTURAL_MATERIALS['geogrid']['E']
+        RebarDiameter = STRUCTURAL_MATERIALS['geogrid']['RebarDiameter']
+        EA1 = E * (math.pi * (RebarDiameter / 1000) ** 2 / 4) / STRUCTURAL_MATERIALS['geogrid']['HorizentalSpace']
+
+
         self.__geogrid = self.__g_i.geogridmat()
         self.__geogrid.MaterialType = STRUCTURAL_MATERIALS['geogrid']['type']
-        self.__geogrid.Identification = "Geogrid_PHI28"
-        self.__geogrid.setproperties("EA1", STRUCTURAL_MATERIALS['geogrid']['ea1'])
+        self.__geogrid.Identification = f"Geogrid_PHI:{RebarDiameter}_HSpace:{STRUCTURAL_MATERIALS['geogrid']['HorizentalSpace']}"
+        self.__geogrid.setproperties("EA1", EA1)
         
+
         # Plate material
         self.__plate = self.__g_i.platemat()
         self.__plate.MaterialType = STRUCTURAL_MATERIALS['plate']['type']
@@ -104,7 +110,7 @@ class PlaxisModelInput:
     def __create_structures(self):
         """Create structural elements"""
         logger.info("Creating structures...")
-        self.__g_i.gotostructures()
+        #self.__g_i.gotostructures()
         
         # Create shotcrete line
         shotcrete_line = self.__g_i.plate((0, 0), (0, -self.__plate_length))
@@ -135,59 +141,67 @@ class PlaxisModelInput:
         logger.info("Creating phases...")
         self.__g_i.gotostages()
 
-
-        #Activate line load for IntialPhases
-        line_loads = self.__g_i.LineLoads
+        # Get initial references to avoid repeated lookups
         initial_phase = self.__g_i.Phases[0]
-        self.__g_i.activate(line_loads , initial_phase)
-
+        line_loads = self.__g_i.LineLoads
         soils = self.__g_i.Soils
         lines = self.__g_i.Lines
-        geogrid_lines = self.__g_i.GeoGrids
-        # Filter lines that are associated with plates
-        lines = self.__g_i.Lines
 
-        # Filter lines that are associated with geogrid materials
-        geogrid_lines = [line for line in lines if hasattr(line, "Geogrid")]
+        # Activate line loads in initial phase
+        self.__g_i.activate(line_loads, initial_phase)
 
-        # Create map of soil names to soil objects
+        # Create maps once upfront
         soil_map = {soil.Name.echo().split(".")[0]: soil for soil in soils}
-        line_map = {line.Name.echo().split(".")[0]: line for line in lines}
-        Geo_map = {Geo.Name.echo().split(".")[0]: Geo for Geo in geogrid_lines}
-        firstIndexGepMap = min(int(name.split('_')[1]) for name in Geo_map.keys())
+        
+        # Filter and map lines by type
+        plate_lines = []
+        geogrid_lines = []
+        for line in lines:
+            if hasattr(line, "Plate"):
+                plate_lines.append(line)
+            elif hasattr(line, "Geogrid"):
+                geogrid_lines.append(line)
+                
+        # Cache geometry values to avoid repeated property access
+        plate_geometries = [(line, 
+                           line.Geometry.x1.value, 
+                           line.Geometry.y1.value,
+                           line.Geometry.x2.value, 
+                           line.Geometry.y2.value) for line in plate_lines]
+                           
+        geogrid_geometries = [(line,
+                              line.Geometry.x1.value,
+                              line.Geometry.y1.value, 
+                              line.Geometry.x2.value,
+                              line.Geometry.y2.value) for line in geogrid_lines]
 
+        # Main phase creation loop
         for indexS in range(1, int(abs(self.__plate_length / 2)) + 1):
-            #create New Phase
             new_phase = self.__g_i.phase(self.__g_i.Phases[-1])
             self.phase_names.append(new_phase.Identification.value)
 
-            # Deactivate Soils
-            soilName = f"Soil_1_{indexS}"
-            Soil = soil_map[soilName]
-            xMinSoil, yMinSoil, xMaxSoil, yMaxSoil = Soil.Parent.BoundingBox.xMin, Soil.Parent.BoundingBox.yMin, Soil.Parent.BoundingBox.xMax, Soil.Parent.BoundingBox.yMax
-            soil_box = box(xMinSoil.value, yMinSoil.value, xMaxSoil.value, yMaxSoil.value)
-            
-            self.__g_i.deactivate(Soil, new_phase)
+            # Get soil and its bounding box
+            soil = soil_map[f"Soil_1_{indexS}"]
+            bbox = soil.Parent.BoundingBox
+            xmin, ymin = bbox.xMin.value, bbox.yMin.value
+            xmax, ymax = bbox.xMax.value, bbox.yMax.value
+            soil_box = box(xmin, ymin, xmax, ymax)
 
-            # Activate ShotCrete
-            found2Line = 0
-            for line_name, line in line_map.items():
-                if hasattr(line, "Plate"):
-                    x1, y1 = line.Geometry.x1.value, line.Geometry.y1.value
-                    x2, y2 = line.Geometry.x2.value, line.Geometry.y2.value
-                    plate_line = LineString([(x1, y1), (x2, y2)])
+            # Deactivate soil
+            self.__g_i.deactivate(soil, new_phase)
 
-                    if (plate_line.within(soil_box) or plate_line.touches(soil_box)) and (y1 >= yMinSoil.value and y2 >= yMinSoil.value):
-                        self.__g_i.activate(line, new_phase)
+            # Activate relevant plates
+            for line, x1, y1, x2, y2 in plate_geometries:
+                plate_line = LineString([(x1, y1), (x2, y2)])
+                if ((plate_line.within(soil_box) or plate_line.touches(soil_box)) and 
+                    y1 >= ymin and y2 >= ymin):
+                    self.__g_i.activate(line, new_phase)
 
-            # Activate Nailing
-            for GeoName, Nail in Geo_map.items():
-                x1, y1 = Nail.Geometry.x1.value, Nail.Geometry.y1.value
-                x2, y2 = Nail.Geometry.x2.value, Nail.Geometry.y2.value
+            # Activate relevant geogrids
+            for line, x1, y1, x2, y2 in geogrid_geometries:
                 nail_line = LineString([(x1, y1), (x2, y2)])
-
                 if nail_line.intersects(soil_box):
-                    self.__g_i.activate(Nail, new_phase)
+                    self.__g_i.activate(line, new_phase)
 
     def __run(self):
         logger.info("Running calculation...")
@@ -200,10 +214,15 @@ class PlaxisModelInput:
         self.__g_i.save(save_path)
         #self.__g_i.close()
 
+    def __Output_View(self):
+        self.__g_i.view(self.__g_i.Phases[-1])
+        logger.info("Viewing output project...")
+
     def Create_Model(self):
         start_time = time.time()
         logger.info("Starting PLAXIS model creation...")
         
+
         # Create and run model
         self.__connect()
         self.__create_project()
@@ -216,7 +235,7 @@ class PlaxisModelInput:
         self.__create_phase()
         self.__run()
         self.__save()
-        #add view InitialPhase
-        self.__g_i.gotoviews()
-        self.__g_i.view(self.__g_i.Phases[0])
+        self.__Output_View()
+        
         logger.info(f"Total execution time: {time.time() - start_time:.2f} seconds")
+

@@ -17,6 +17,7 @@ def main():
 
     output = OutputModel.PlaxisModelOutput()
     output.GetOutput()
+    OutputData = output.__output_data
 
     end_time = time.time()
     elapsed_time = end_time - start_time

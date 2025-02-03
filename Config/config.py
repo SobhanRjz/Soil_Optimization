@@ -28,7 +28,7 @@ MODEL_GEOMETRY = {
     'step_phase': 2,     # meters
     'load_value': 15,    # kN/m
     'geogrid_teta': 10,   # degrees
-    'mesh_size': MeshSize.MEDIUM.value  # meters
+    'mesh_size': MeshSize.VERY_COARSE.value  # meters
 }
 
 
@@ -50,9 +50,11 @@ SOIL_PROPERTIES = {
 STRUCTURAL_MATERIALS = {
     'geogrid': {
         'type': 'Elastic',
+        'E' : 2.1 * 10 **8, #KN/m2
+        'RebarDiameter' : 28, #mm
         'ea1': 123000, #KN/m
-        'HorizentalSpace': 10, #M
-        'VerticalSpace': 2 #M
+        'HorizentalSpace': 1 , # M
+        'VerticalSpace': 2 # M
     },
     'plate': {
         'type': 'Elastic',
