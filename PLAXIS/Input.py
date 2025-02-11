@@ -5,32 +5,42 @@ import numpy as np
 from shapely.geometry import LineString, box
 import logging
 import time
-from Config.config import PLAXIS_CONFIG, MODEL_GEOMETRY, SOIL_PROPERTIES, STRUCTURAL_MATERIALS
+from Config.config import PLAXIS_CONFIG, MODEL_GEOMETRY, SOIL_PROPERTIES, STRUCTURAL_MATERIALS, MATERIAL_PRICE
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 class PlaxisModelInput:
-    def __init__(self, host=PLAXIS_CONFIG['input']['host'], 
-                 port=PLAXIS_CONFIG['input']['port'], 
-                 password=PLAXIS_CONFIG['input']['password']):
-        self.__host = host
-        self.__port = port
-        self.__password = password
+    def __init__(self):
+        
+
+        self.PLAXIS_CONFIG = PLAXIS_CONFIG
+        self.MODEL_GEOMETRY = MODEL_GEOMETRY
+        self.SOIL_PROPERTIES = SOIL_PROPERTIES
+        self.STRUCTURAL_MATERIALS = STRUCTURAL_MATERIALS
+        self.MATERIAL_PRICE = MATERIAL_PRICE
+
+        self.__host = self.PLAXIS_CONFIG.input['host']
+        self.__port = self.PLAXIS_CONFIG.input['port']
+        self.__password = self.PLAXIS_CONFIG.input['password']
         self.__s_i = None
+
         self.__g_i = None
         
-        # Load geometry parameters from config
-        self.__plate_length = MODEL_GEOMETRY['plate_length']
-        self.__geogrid_VerticalSpace = STRUCTURAL_MATERIALS['geogrid']['VerticalSpace']
-        self.__geogrid_length = self.__plate_length
-        self.__geogrid_teta = MODEL_GEOMETRY['geogrid_teta']
-        self.__step_phase = MODEL_GEOMETRY['step_phase']
 
-        self.__load_value = MODEL_GEOMETRY['load_value']
+        # Load geometry parameters from config
+        self.__plate_length = self.MODEL_GEOMETRY.plate_length
+        self.__geogrid_VerticalSpace = self.STRUCTURAL_MATERIALS.geogrid.VerticalSpace
+        self.__geogrid_length = self.STRUCTURAL_MATERIALS.geogrid.nail_length
+        self.__geogrid_teta = self.MODEL_GEOMETRY.geogrid_teta
+        self.__step_phase = self.MODEL_GEOMETRY.step_phase
+
+
+        self.__load_value = self.MODEL_GEOMETRY.load_value
         self.__contour_points = None
         self.phase_names = []
+
 
     def __connect(self):
         """Establish connection to PLAXIS server"""
@@ -66,39 +76,46 @@ class PlaxisModelInput:
         self.__soil_material = self.__g_i.soilmat()
         self.__soil_material.Identification = "SoilMat"
         self.__soil_material.MaterialName = "Clay"
-        self.__soil_material.SoilModel = SOIL_PROPERTIES['model']
-        self.__soil_material.gammaUnsat = SOIL_PROPERTIES['gamma_unsat']
-        self.__soil_material.gammaSat = SOIL_PROPERTIES['gamma_sat']
-        self.__soil_material.E50Ref = SOIL_PROPERTIES['e50_ref']
-        self.__soil_material.EOedRef = SOIL_PROPERTIES['eoed_ref']
-        self.__soil_material.EURRef = SOIL_PROPERTIES['eur_ref']
-        self.__soil_material.nu = SOIL_PROPERTIES['nu']
-        self.__soil_material.phi = SOIL_PROPERTIES['phi']
-        self.__soil_material.cRef = SOIL_PROPERTIES['c_ref']
-        self.__soil_material.psi = SOIL_PROPERTIES['psi']
+        self.__soil_material.SoilModel = self.SOIL_PROPERTIES.model
+        self.__soil_material.gammaUnsat = self.SOIL_PROPERTIES.gamma_unsat
+        self.__soil_material.gammaSat = self.SOIL_PROPERTIES.gamma_sat
+        self.__soil_material.E50Ref = self.SOIL_PROPERTIES.e50_ref
+
+        self.__soil_material.EOedRef = self.SOIL_PROPERTIES.eoed_ref
+        self.__soil_material.EURRef = self.SOIL_PROPERTIES.eur_ref
+        self.__soil_material.nu = self.SOIL_PROPERTIES.nu
+        self.__soil_material.phi = self.SOIL_PROPERTIES.phi
+        self.__soil_material.cRef = self.SOIL_PROPERTIES.c_ref
+
+        self.__soil_material.psi = self.SOIL_PROPERTIES.psi
         
+
     def __create_structural_materials(self):
         """Create geogrid and plate materials"""
         logger.info("Creating structural materials...")
         # Geogrid material
-        E = STRUCTURAL_MATERIALS['geogrid']['E']
-        RebarDiameter = STRUCTURAL_MATERIALS['geogrid']['RebarDiameter']
-        EA1 = E * (math.pi * (RebarDiameter / 1000) ** 2 / 4) / STRUCTURAL_MATERIALS['geogrid']['HorizentalSpace']
+        E = self.STRUCTURAL_MATERIALS.geogrid.E
+        RebarDiameter = self.STRUCTURAL_MATERIALS.geogrid.RebarDiameter
+
+        EA1 = E * (math.pi * (RebarDiameter / 1000) ** 2 / 4) / self.STRUCTURAL_MATERIALS.geogrid.HorizentalSpace
+
 
 
         self.__geogrid = self.__g_i.geogridmat()
-        self.__geogrid.MaterialType = STRUCTURAL_MATERIALS['geogrid']['type']
-        self.__geogrid.Identification = f"Geogrid_PHI:{RebarDiameter}_HSpace:{STRUCTURAL_MATERIALS['geogrid']['HorizentalSpace']}"
+        self.__geogrid.MaterialType = self.STRUCTURAL_MATERIALS.geogrid.type
+        self.__geogrid.Identification = f"Geogrid_PHI:{RebarDiameter}_HSpace:{self.STRUCTURAL_MATERIALS.geogrid.HorizentalSpace}"
         self.__geogrid.setproperties("EA1", EA1)
         
 
+
         # Plate material
         self.__plate = self.__g_i.platemat()
-        self.__plate.MaterialType = STRUCTURAL_MATERIALS['plate']['type']
+        self.__plate.MaterialType = self.STRUCTURAL_MATERIALS.plate.type
         self.__plate.Identification = "Plate"
-        self.__plate.setproperties("w", STRUCTURAL_MATERIALS['plate']['UnitWeight'])
-        self.__plate.setproperties("EA1", STRUCTURAL_MATERIALS['plate']['ea1'])
-        self.__plate.setproperties("EI", STRUCTURAL_MATERIALS['plate']['ei'])
+        self.__plate.setproperties("w", self.STRUCTURAL_MATERIALS.plate.UnitWeight)
+        self.__plate.setproperties("EA1", self.STRUCTURAL_MATERIALS.plate.ea1)
+        self.__plate.setproperties("EI", self.STRUCTURAL_MATERIALS.plate.ei)
+
         self.__plate.setproperties("StructNu", 0.2)
         
 
@@ -135,7 +152,8 @@ class PlaxisModelInput:
     def __automesh(self):
         logger.info("Generating mesh...")
         self.__g_i.gotomesh()
-        mesh = self.__g_i.mesh(MODEL_GEOMETRY['mesh_size']) # medium
+        mesh = self.__g_i.mesh(self.MODEL_GEOMETRY.mesh_size) # medium
+
 
     def __create_phase(self):
         logger.info("Creating phases...")
@@ -230,7 +248,7 @@ class PlaxisModelInput:
         self.__create_soil_profile()
         self.__create_structural_materials()
         self.__assign_materials()
-        self.__create_structures()
+        self.__create_structures()  
         self.__automesh()
         self.__create_phase()
         self.__run()

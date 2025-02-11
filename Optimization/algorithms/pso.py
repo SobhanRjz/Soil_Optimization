@@ -7,7 +7,8 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
 from Database.PostgreSQL import PostgreSQLDatabase
 from models import InputData, ResultData, ParticleConfig
-
+import PLAXIS.Input as InputModel
+import PLAXIS.Output as OutputModel
 class HybridPSOHS:
     def __init__(self, population_size=30, harmony_memory_size=30, max_iter=100,
                  inertia_weight=0.7, cognitive_weight=1.5, social_weight=2.0,
@@ -17,7 +18,7 @@ class HybridPSOHS:
         random.seed(42)
         self.rebar_dia_List = [16, 18, 20, 22, 25, 28, 30]
         self.nail_len_List = list(range(1, 40, 5))  # 1 to 40 meters, step 5
-        self.nail_teta_List = [45, 50, 55, 60, 65, 70, 75, 80]  # Degrees
+        self.nail_teta_List = [5, 10, 15, 20]  # Degrees
         self.nail_h_space_List = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220]  # cm
         self.nail_v_space_List = [100, 150, 200, 250, 300, 350, 400, 450, 500]  # cm
         
@@ -172,6 +173,7 @@ class HybridPSOHS:
         # Initialize particle population
         self.particles: List[ParticleConfig] = []
         self.harmony_memory: List[ParticleConfig] = []
+        model = InputModel.PlaxisModelInput()
 
         for _ in range(self.population_size):
             particle = self.initialize_particle("PSO")
@@ -195,16 +197,23 @@ class HybridPSOHS:
             while True:
                 # Insert initial results into database
                 _ , input_Data = self.DataBase._get_input_Data()
-                
-                # result_data = ResultData(   
-                #                             Total_Distance= 5,
-                #                             Total_Distance_Allow= 10,
-                #                             Structure_Force= 50,
-                #                             Structure_Force_Allow= 60,
-                #                             Soil_Force= 70,
-                #                             Soil_Force_Allow= 80,
-                #                             Penalty= 1,
-                #                             Cost= 5000)
+                model.MODEL_GEOMETRY.plate_length = input_Data.nail_len
+                model.STRUCTURAL_MATERIALS.geogrid.RebarDiameter = input_Data.rebar_dia
+                model.STRUCTURAL_MATERIALS.geogrid.HorizentalSpace = input_Data.nail_h_space / 100
+                model.STRUCTURAL_MATERIALS.geogrid.VerticalSpace = input_Data.nail_v_space / 100
+                model.STRUCTURAL_MATERIALS.geogrid.teta = input_Data.nail_teta
+
+                model.Create_Model()
+                output = OutputModel.PlaxisModelOutput()
+                output.GetOutput()
+                Total_Distance = max(data.utotal for data in output._output_data)
+                resultOutput = output._Check_Total_Displacement()
+
+                result_data = ResultData(   
+                                Total_Distance= Total_Distance,
+                                Total_Distance_Allow= resultOutput,
+                                Penalty= 1,
+                                Cost= 5000)
                 
 
                 # self.DataBase.insert_result(self.particles[0].input_hash, status = 2, result_data = result_data)

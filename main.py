@@ -12,11 +12,13 @@ logger = logging.getLogger(__name__)
 def main():
     start_time = time.time()
     
+    
     model = InputModel.PlaxisModelInput()
     model.Create_Model()
 
     output = OutputModel.PlaxisModelOutput()
     output.GetOutput()
+    output._get_axialForces()
     OutputData = output.__output_data
 
     end_time = time.time()

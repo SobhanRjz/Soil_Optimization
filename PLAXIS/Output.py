@@ -5,7 +5,7 @@ import numpy as np
 from shapely.geometry import LineString, box
 import logging
 import time
-from Config.config import PLAXIS_CONFIG, MODEL_GEOMETRY
+from Config.config import PLAXIS_CONFIG, MODEL_GEOMETRY, STRUCTURAL_MATERIALS
 from dataclasses import dataclass
 import numpy as np
 
@@ -21,11 +21,18 @@ class OutputClassData:
     uy: float
     utotal: float
     phaseName: str
-
+@dataclass
+class ElementForceData:
+    GeoName: str = ""
+    axialForceX: float = 0.0
+    x: float = 0.0
+    y: float = 0.0
+    max_ratio_Structures: float = 0.0
+    max_ratio_Soil: float = 0.0
 class PlaxisModelOutput:
-    def __init__(self, model_input = None, host=PLAXIS_CONFIG['output']['host'], 
-                 port=PLAXIS_CONFIG['output']['port'], 
-                 password=PLAXIS_CONFIG['output']['password']):
+    def __init__(self, model_input = None, host=PLAXIS_CONFIG.output['host'], 
+                 port=PLAXIS_CONFIG.output['port'], 
+                 password=PLAXIS_CONFIG.output['password']):
         self.__host = host
         self.__port = port
         self.__password = password
@@ -34,7 +41,7 @@ class PlaxisModelOutput:
         self.__output_data = []
 
         # Load geometry parameters from config
-        self.__plate_length = MODEL_GEOMETRY['plate_length']
+        self.__plate_length = MODEL_GEOMETRY.plate_length
         self.__phase_names = model_input.phase_names if model_input else None
         self.__start_time = time.time()
 
@@ -113,8 +120,8 @@ class PlaxisModelOutput:
 
         # Iterate through all phases
         # Get only first and last phase
-        #phases = [self.__g_i.Phases[-1], self.__g_i.Phases[-2]]
-        for phase in self.__g_i.Phases[:]:
+        phases = [self.__g_i.Phases[-1]]
+        for phase in phases:
             # retrieve values for this phase
             x_coords = self.__getnodeid_x(phase)
             y_coords = self.__getnodeid_y(phase)
@@ -139,4 +146,75 @@ class PlaxisModelOutput:
 
         # Sort output data based on total displacement (utotal)
         self.__output_data.sort(key=lambda x: x.utotal, reverse=True)
+        
         logger.info(f"Processed {len(self.__output_data)} points of data")
+
+
+
+    def _get_axialForces(self):
+        """Get axial forces from PLAXIS server"""
+        self.__connect()
+        logger.info("Getting axial forces from PLAXIS server...")
+        
+        # Create dictionary to store forces by element ID
+        element_forces = {}
+        # Get only last phase
+        phase = self.__g_i.Phases[-1]
+        logger.info(f"Processing axial forces for phase: {phase.Name.value}")
+        for Geo in self.__g_i.Geogrids[:]:
+            axialForcesX = self.__g_i.getresults(Geo, phase, self.__g_i.ResultTypes.Geogrid.Nx2D, 'Node')[:]
+            CoordinatesX = self.__g_i.getresults(Geo, phase, self.__g_i.ResultTypes.Geogrid.X, 'Node')[:]
+            CoordinatesY = self.__g_i.getresults(Geo, phase, self.__g_i.ResultTypes.Geogrid.Y, 'Node')[:]
+            ElementID = Geo.Name.value
+
+            # Process data for each element
+            
+            element_id = ElementID
+            if element_id not in element_forces:
+                element_forces[element_id] = []
+            
+            force_data = ElementForceData(
+                GeoName=Geo.Name.value,
+                axialForceX=[axialForcesX[i] * STRUCTURAL_MATERIALS.geogrid.HorizentalSpace for i in range(len(axialForcesX))],
+                x=CoordinatesX,
+                y=CoordinatesY
+            )
+            element_forces[element_id] = force_data
+
+        # Store the processed data
+        self.__axial_forces_data = element_forces
+        self._Check_Axial_Forces()
+        logger.info(f"Processed axial forces for {len(element_forces)} elements")
+
+    def _Check_Axial_Forces(self):
+        """Check if all axial forces are below 10"""
+        self._check_Axial_Structures()
+        self._check_Axial_Soil()
+
+        return all(data.axialForceX < 10 for data in self.__axial_forces_data)
+    def _check_Axial_Structures(self):
+        RebarArea = STRUCTURAL_MATERIALS.geogrid.RebarDiameter ** 2 * math.pi / 4
+        BaseForce = STRUCTURAL_MATERIALS.geogrid.Fy * RebarArea  / 1.8
+        
+        max_ratios = {}
+        for element_id, force_data in self.__axial_forces_data.items():
+            max_ratio = max(force_data.axialForceX) / BaseForce
+            force_data.max_ratio_Structures = max_ratio
+                
+
+    def _check_Axial_Soil(self):
+        AlphaBond = 0.3
+        Su = 100 # Kn / m2
+        CodeRatio = 2.0
+        RebarDiameter = STRUCTURAL_MATERIALS.geogrid.RebarDiameter / 100 # m
+        SoilStrength = 1.2 * math.pi * RebarDiameter * STRUCTURAL_MATERIALS.geogrid.nail_length * AlphaBond * Su  / CodeRatio
+
+        for element_id, force_data in self.__axial_forces_data.items():
+            max_ratio = max(force_data.axialForceX) / SoilStrength
+            force_data.max_ratio_Soil = max_ratio
+        
+
+
+    def _Check_Total_Displacement(self):
+        """Check if all total displacements are below 10"""
+        return all(data.utotal < 10 for data in self.__output_data)

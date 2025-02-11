@@ -3,14 +3,14 @@ from typing import Dict
 
 @dataclass
 class ResultData:
-    Total_Distance: float
-    Total_Distance_Allow: float
-    Structure_Force: float
-    Structure_Force_Allow: float
-    Soil_Force: float
-    Soil_Force_Allow: float
-    Penalty: float
-    Cost: float
+    Total_Distance: float = 0.0
+    Total_Distance_Allow: float = 0.0
+    Structure_Force: float = 0.0
+    Structure_Force_Allow: float = 0.0
+    Soil_Force: float = 0.0
+    Soil_Force_Allow: float = 0.0
+    Penalty: float = 0.0
+    Cost: float = 0.0
 
     def to_dict(self) -> Dict[str, float]:
         """Convert dataclass to dictionary"""
