@@ -66,13 +66,15 @@ class PostgreSQLDatabase:
         for name, field in InputData.__dataclass_fields__.items():
             if name == 'Algo_Name':
                 fields.append((name, "VARCHAR(50) NOT NULL"))
+            elif name == 'nail_len':
+                fields.append((name, "INTEGER[] NOT NULL"))
             else:
                 fields.append((name, "DOUBLE PRECISION NOT NULL"))
         
         columns = ",\n                ".join([
             "id SERIAL PRIMARY KEY",
-            "input_hash CHAR(40) NOT NULL UNIQUE",
-            "status INTEGER NOT NULL"] + 
+            "input_hash CHAR(40) NOT NULL UNIQUE", 
+            "status INTEGER NOT NULL"] +
             [f"{name} {type_}" for name, type_ in fields]
         )
         
@@ -105,9 +107,9 @@ class PostgreSQLDatabase:
         """Get the input hash of one result where status is not 2.
         
         Returns:
-            str: Input hash of a result with status != 2, or None if not found
+            str: Input hash of a result with status != 3, or None if not found
         """
-        self._cursor.execute('SELECT COUNT(*) FROM results WHERE status != 2 LIMIT 1')
+        self._cursor.execute('SELECT COUNT(*) FROM results WHERE status != 3 LIMIT 1')
         result = self._cursor.fetchone()
         if result:
             return result[0]
@@ -135,7 +137,7 @@ class PostgreSQLDatabase:
         Returns:
             str: The input hash from the last input, or None if table is empty
         """
-        self._cursor.execute('SELECT input_hash FROM results WHERE status != 2 ORDER BY id DESC LIMIT 1')
+        self._cursor.execute('SELECT input_hash FROM results WHERE status != 3 ORDER BY id DESC LIMIT 1')
         result = self._cursor.fetchone()
         if result:
             return result[0]
@@ -189,7 +191,15 @@ class PostgreSQLDatabase:
             fields = [f for f in InputData.__dataclass_fields__]
             field_names = ['input_hash', 'status'] + fields
             placeholders = ','.join(['%s'] * (len(fields) + 2))
-            field_values = [input_hash, status] + [getattr(input_data, f) for f in fields]
+            
+            # Convert nail_len list to string representation for database storage
+            field_values = [input_hash, status]
+            for f in fields:
+                value = getattr(input_data, f)
+                if f == 'nail_len':
+                    # Convert list of integers to array format for PostgreSQL
+                    value = '{' + ','.join([str(int(x)) for x in value]) + '}'
+                field_values.append(value)
             
             self._cursor.execute(f'''
                 INSERT INTO inputs ({','.join(field_names)})

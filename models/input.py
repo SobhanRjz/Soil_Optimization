@@ -1,10 +1,10 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Dict, Any
 
 @dataclass
 class InputData:
     rebar_dia: float = 0.0
-    nail_len: float = 0.0
+    nail_len: list[int] = field(default_factory=list)
     nail_teta: float = 0.0
     nail_h_space: float = 0.0
     nail_v_space: float = 0.0
