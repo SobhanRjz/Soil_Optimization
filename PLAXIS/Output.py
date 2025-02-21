@@ -97,7 +97,7 @@ class PlaxisModelOutput:
         """Get displacement from PLAXIS server"""
         logger.info("Getting displacement from PLAXIS server...")
         phases = [self.__g_i.Phases[-1]]
-        for phase in phases:
+        for phase in self.__g_i.Phases:
             # retrieve values for this phase
             x_coords = self.__getnodeid_x(phase)
             y_coords = self.__getnodeid_y(phase)
