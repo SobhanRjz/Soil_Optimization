@@ -128,9 +128,10 @@ class PlaxisModelInput:
 
         for i, y in enumerate(np.arange(-1.5, -self.__plate_length, -self.__geogrid_VerticalSpace)):
             
-            geogrid_y_offset = self.__geogrid_length[i] * math.tan(math.radians(self.__geogrid_teta))
-            geogrid = self.__g_i.geogrid((0, y), (-self.__geogrid_length[i], y - geogrid_y_offset))
-            geogrid[2].setproperties("Geogrid.Material", self.__geogrid)
+            if i < len(self.__geogrid_length):
+                geogrid_y_offset = self.__geogrid_length[i] * math.tan(math.radians(self.__geogrid_teta))
+                geogrid = self.__g_i.geogrid((0, y), (-self.__geogrid_length[i], y - geogrid_y_offset))
+                geogrid[2].setproperties("Geogrid.Material", self.__geogrid)
 
         # Create Line Loads
         load = self.__g_i.lineload((0,0), (-self.__plate_length * 1.5 ,0))

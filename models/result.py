@@ -6,7 +6,7 @@ class ResultData:
     Total_Displacement: float = 0.0
     Total_Displacement_Allow: float = 0.0
     max_Structure_Ratio: float = 0.0
-    max_Soil_Ratio: float = 0.0
+    max_PullOut_Ratio: float = 0.0
     Penalty: float = 0.0
     Cost: float = 0.0
 

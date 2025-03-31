@@ -11,8 +11,8 @@ import numpy as np
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
-
 @dataclass
 class DisplacementData:
     x: float = 0.0
@@ -97,7 +97,7 @@ class PlaxisModelOutput:
         """Get displacement from PLAXIS server"""
         logger.info("Getting displacement from PLAXIS server...")
         phases = [self.__g_i.Phases[-1]]
-        for phase in self.__g_i.Phases:
+        for phase in phases:
             # retrieve values for this phase
             x_coords = self.__getnodeid_x(phase)
             y_coords = self.__getnodeid_y(phase)
@@ -143,7 +143,7 @@ class PlaxisModelOutput:
             
             force_data = ElementForceData(
                 GeoName=Geo.Name.value,
-                axialForceX=[axialForcesX[i] * self.config.STRUCTURAL_MATERIALS.geogrid.HorizentalSpace for i in range(len(axialForcesX))],
+                axialForceX=[axialForcesX[i] for i in range(len(axialForcesX))],
                 x=CoordinatesX,
                 y=CoordinatesY
             )
@@ -165,21 +165,21 @@ class PlaxisModelOutput:
         FS = 1.8
         RebarArea = (self.config.STRUCTURAL_MATERIALS.geogrid.RebarDiameter / 1000) ** 2 * math.pi / 4
         Fy = self.config.STRUCTURAL_MATERIALS.geogrid.Fy * 1000 # KN/m2
-        BaseForce = Fy * RebarArea  / FS
+        AllowableForce = Fy * RebarArea  / (FS * self.config.STRUCTURAL_MATERIALS.geogrid.HorizentalSpace)
 
         for element_id, force_data in self.__axial_forces_data.items():
-            max_ratio = max(force_data.axialForceX) / BaseForce
+            max_ratio = max(force_data.axialForceX) / AllowableForce
             force_data.max_ratio_Structures = max_ratio
                 
 
     def _check_Axial_Soil(self):
         FS = 2.0
-        NominalBond = 60 * 6.89475728 # Kn / m2
+        NominalBond = 50 * 6.89475728 # Kn / m2
         HollowDiameter = self.config.STRUCTURAL_MATERIALS.geogrid.HollowDiameter # M
         NailLength = self.config.STRUCTURAL_MATERIALS.geogrid.nail_length # M
         SoilStrength = [0] * len(NailLength)
         for i, nail_length in enumerate(NailLength):
-            SoilStrength[i] = math.pi * HollowDiameter * nail_length * NominalBond / FS
+            SoilStrength[i] = math.pi * HollowDiameter * nail_length * NominalBond / (FS * self.config.STRUCTURAL_MATERIALS.geogrid.HorizentalSpace)
 
         for i, (_, force_data) in enumerate(self.__axial_forces_data.items()):
             max_ratio = max(force_data.axialForceX) / SoilStrength[i]

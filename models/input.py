@@ -9,6 +9,7 @@ class InputData:
     nail_h_space: float = 0.0
     nail_v_space: float = 0.0
     Algo_Name: str = ""
+    nail_len_pattern: dict = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert dataclass to dictionary"""
@@ -18,7 +19,8 @@ class InputData:
             'nail_teta': self.nail_teta,
             'nail_h_space': self.nail_h_space,
             'nail_v_space': self.nail_v_space,
-            'Algo_Name': self.Algo_Name
+            'Algo_Name': self.Algo_Name,
+            'nail_len_pattern': self.nail_len_pattern
         }
 
     @classmethod

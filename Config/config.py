@@ -27,7 +27,7 @@ class ModelGeometry:
         self.step_phase = 2     # meters 
         self.load_value = 10    # kN/m
         self.geogrid_teta = 10  # degrees
-        self.mesh_size = MeshSize.VERY_COARSE.value  # meters
+        self.mesh_size = MeshSize.COARSE.value  # meters
 
 class SoilProperties:
     def __init__(self):
@@ -46,7 +46,7 @@ class GeogridMaterial:
     def __init__(self):
         self.type = 'Elastic'
         self.E = 2.1 * 10**8  # KN/m2
-        self.Fy = 340  # MPA = 340,000 KN/m² 
+        self.Fy = 400  # MPA = 400,000 KN/m² 
         self.RebarDiameter = 28  # mm
         self.ea1 = 123000  # KN/m
         self.HorizentalSpace = 1  # M

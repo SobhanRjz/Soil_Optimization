@@ -68,13 +68,16 @@ class PostgreSQLDatabase:
                 fields.append((name, "VARCHAR(50) NOT NULL"))
             elif name == 'nail_len':
                 fields.append((name, "INTEGER[] NOT NULL"))
+            elif name == 'nail_len_pattern':
+                fields.append((name, "JSONB"))  # Store pattern as JSON
             else:
                 fields.append((name, "DOUBLE PRECISION NOT NULL"))
         
         columns = ",\n                ".join([
             "id SERIAL PRIMARY KEY",
             "input_hash CHAR(40) NOT NULL UNIQUE", 
-            "status INTEGER NOT NULL"] +
+            "status INTEGER NOT NULL",
+            "created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP"] +
             [f"{name} {type_}" for name, type_ in fields]
         )
         
@@ -82,6 +85,8 @@ class PostgreSQLDatabase:
             CREATE TABLE IF NOT EXISTS inputs (
                 {columns}
             );
+            CREATE INDEX IF NOT EXISTS idx_inputs_status ON inputs(status);
+            CREATE INDEX IF NOT EXISTS idx_inputs_hash ON inputs(input_hash);
         ''')
 
     def _create_results_table(self) -> None:
@@ -207,7 +212,16 @@ class PostgreSQLDatabase:
                 ON CONFLICT (input_hash) DO NOTHING
                 RETURNING id;
             ''', field_values)
-            input_id = self._cursor.fetchone()[0]
+            result = self._cursor.fetchone()
+            
+            # Check if result is None (happens when ON CONFLICT DO NOTHING is triggered)
+            if result is None:
+                # Get the id for the existing record with this hash
+                self._cursor.execute('SELECT id FROM inputs WHERE input_hash = %s', (input_hash,))
+                input_id = self._cursor.fetchone()[0]
+            else:
+                input_id = result[0]
+                
             self._conn.commit()
             return input_id, input_hash
             
@@ -306,7 +320,10 @@ class PostgreSQLDatabase:
         Returns:
             Hexadecimal hash string
         """
-        hash_string = str(sorted(data.items())).encode()
+        
+        # Filter out nail_len_pattern from the data before hashing
+        filtered_data = {k: v for k, v in data.items() if k != 'nail_len_pattern'}
+        hash_string = str(sorted(filtered_data.items())).encode()
         return hashlib.sha1(hash_string).hexdigest()
 
     def close(self) -> None:
