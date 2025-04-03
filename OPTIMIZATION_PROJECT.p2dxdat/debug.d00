@@ -1,0 +1,313 @@
+ K02D
+ Now: 02-04-2025 22:18:36.603
+ IF64        2021
+ CL : 
+ C:\Users\sobha\AppData\Local\Temp\PLAXIS~1\2DXCAL~1\INITIA~1\data.s00 -GSE -mai
+ nLicense 3163
+ Ref: *
+ Win: 1.6.2.9200
+ Mem: 1 16204 (4145) MB (free) physical memory
+ Process ID, MemMB : 11740 6
+ EXE: C:\Program Files\Seequent\PLAXIS 2D 2024\kernel\
+ BLD: Jul 25 2024 18:33:54
+ CWD: C:\ 476.1 (15.8) GB (free)
+ WRK: C:\Users\sobha\AppData\Local\Temp\PLAXIS~1\2DXCAL~1\INITIA~1\ 476.1 (15.8) GB (free)
+ Project name:C:\Users\sobha\AppData\Local\Temp\PLAXIS~1\2DXCAL~1\INITIA~1\data
+ Flow name   :
+ MultiStepping:            0
+ IELTYP  :           15
+ NodTot  :         6989
+ nClust  :            6
+ nEl     :          860
+ NintEl  :            0
+ iElTypI :            6
+ NIntfCh :            0
+ nSubEl  :           16
+ nint1   :           12
+ nodsid  :            5
+ nDiscEl :            0
+ nMindCh:          10
+ CopyBinFile End
+ $$APPTYPEI##           4
+ Skip block [SF5]: $$APPTYPEI##
+ $$GENERALI##          40
+ Skip block [SF5]: $$GENERALI##
+ $$SOLVERSI##           8
+ Skip block [SF5]: $$SOLVERSI##
+ $$UNIT_F_R##         120
+ Skip block [SF5]: $$UNIT_F_R##
+ $$DEFORM_R##         120
+ $$_APPINFT##        1120
+ Skip block [SF5]: $$_APPINFT##
+ $$DEFORM_I##         120
+ $$POREPRSI##          80
+ Skip block [SF5]: $$POREPRSI##
+ $$THFTEMPI##          80
+ Skip block [SF5]: $$THFTEMPI##
+ NDEPAR  :            0
+ NFIRST  :            1
+ iSuction:            0
+ ParmG   :    1.00000000000000     
+ PPTCO   :   0.000000000000000E+000
+ nHand,iFlo:           1           0
+ iCalcType:           10
+ C:\Users\sobha\AppData\Local\Temp\PLAXIS~1\2DXCAL~1\INITIA~1\data.000  F
+ multiplier G:   1.00000000000000     
+ multiplier G:   1.00000000000000     
+ Lxx : $$PHASNAMT##          63
+ Lxx : $$SMATSETI##          24
+ Lxx : $$VOLSTRAR##         144
+ Lxx : $$INTFSETI##           0
+ Lxx : $$DISCSETI##           0
+ Lxx : $$PLATSETI##          40
+ Lxx : $$CABLSETI##           0
+ Lxx : $$GEOTSETI##          20
+ Lxx : $$NNANSETI##           0
+ Lxx : $$FEANSETI##           0
+ Lxx : $$FIXEDANR##           0
+ Lxx : $$FSLOAD1R##           0
+ Lxx : $$TRALOADR##        1200
+ Lxx : $$DISPLA2R##        2328
+ Lxx : $$DYDISP2R##           0
+ Lxx : $$CONTRAAI##           0
+ Lxx : $$CONTRAVR##           0
+ Lxx : $$FIXROTAI##           0
+ Lxx : $$PRESTREI##           0
+ Lxx : $$PRESTRER##           0
+ Lxx : $$DYMULLII##           0
+ Lxx : $$DYMULHAR##           0
+ Lxx : $$DYMULTAR##           0
+ Lxx : $$DYLOAD1R##           0
+ Lxx : $$DYLOAD3R##        1440
+ Lxx : $$BCDYNMCI##          24
+ Lxx : $$BCDYNMCR##          96
+ Lxx : $$BCDYNFXI##          12
+ Lxx : $$EPILSETI##           0
+ Lxx : $$CONNECEI##           0
+ Lxx : $$CONNEC2I##           0
+ Lxx : $$CONNEC2R##           0
+ Lxx : $$BCFIELDR##          96
+ Lxx : $$BCFIELDI##          24
+ Lxx : $$DECONFCR##          48
+ Lxx : $$SLPRECOR##          24
+ Lxx : $$SLPRECAI##          24
+ Lxx : $$_APPINFT##         190
+ nProp,nSoilSet:         200           1
+ nUnits:           7
+ Unit L: m
+ Unit F: kN
+ Unit T: day
+ OneAtm:   100.000000000000       [F/L2]
+  MTypeL, ProLay
+          106
+   1  2.50000E+04
+   2  2.00000E-01
+   3  5.00000E-01
+   4  1.50000E+01
+   9  2.00000E+01
+  10  2.00000E+01
+  13  1.00000E+00
+  20  3.33333E-01
+  21  1.00000E-09
+  22  9.99000E-01
+  27  1.00000E+15
+  28  4.95000E-01
+  31  1.02795E+00
+  32  1.62375E+00
+  34  5.00000E-01
+  35  1.00000E+02
+  36  1.86286E+04
+  37  9.00000E-01
+  38  2.00000E+04
+  39  5.00000E-01
+  40  2.00000E+04
+  91  1.00000E+00
+  99  1.00000E+00
+ 101  5.00000E-01
+ 102  5.00000E-01
+ 103  1.00000E+00
+ 105  2.00000E+00
+ 106 -1.06000E+00
+ 107 -2.37000E+00
+ 110  1.00000E+04
+ 111  1.00000E+00
+ 112  6.20347E-02
+ 113  3.83000E+00
+ 114  1.37740E+00
+ 115  1.25000E+00
+ 117  1.00000E+00
+ 181  1.00000E+00
+ 184  2.60000E+00
+ 191  1.00000E+01
+ 192  1.30000E+01
+ 193  7.70000E+01
+ NEL, NODTOT, NINTEL,NMindCh,NAnchr,NLine,NTEX:         860        6989
+           0          10           0           0         113
+ WWATER   :    10.0000000000000     
+ Read_Wxx
+ Size bBuf, rBuf:       17600       12900
+ nContour2Dx:         270
+ io:          11
+ copy Contour2Dx to Contour: nContour2Dx         270
+ ParmG   :    1.00000000000000     
+ find_POPs_from_BHs           0
+ find_POPs_from_BHs_int           0
+ Check_Coor_MinMax
+ xMinMax:  -30.00000       15.00000      4.5000001E-05
+ ParmG:   1.00000000000000     
+ it,nsig0,nsig: 1 121 471 6989 443   0.03    0.00
+ it,nsig0,nsig: 2 471 685 6989 963   0.07    0.00
+ it,nsig0,nsig: 3 685 853 6989 1305   0.09    0.00
+ it,nsig0,nsig: 4 853 1023 6989 1637   0.12    0.00
+ it,nsig0,nsig: 5 1023 1185 6989 1950   0.14    0.00
+ it,nsig0,nsig: 6 1185 1306 6989 2206   0.16    0.00
+ it,nsig0,nsig: 7 1306 1485 6989 2536   0.18    0.00
+ it,nsig0,nsig: 8 1485 1638 6989 2857   0.21    0.00
+ it,nsig0,nsig: 9 1638 1813 6989 3211   0.23    0.00
+ it,nsig0,nsig: 10 1813 1959 6989 3499   0.25    0.00
+ it,nsig0,nsig: 11 1959 2110 6989 3809   0.28    0.00
+ it,nsig0,nsig: 12 2110 2232 6989 4048   0.29    0.00
+ it,nsig0,nsig: 13 2232 2345 6989 4281   0.31    0.00
+ it,nsig0,nsig: 14 2345 2489 6989 4570   0.33    0.00
+ it,nsig0,nsig: 15 2489 2620 6989 4831   0.35    0.00
+ it,nsig0,nsig: 16 2620 2745 6989 5086   0.37    0.00
+ it,nsig0,nsig: 17 2745 2892 6989 5357   0.39    0.00
+ it,nsig0,nsig: 18 2892 3057 6989 5700   0.41    0.00
+ it,nsig0,nsig: 19 3057 3167 6989 5942   0.43    0.00
+ it,nsig0,nsig: 20 3167 3281 6989 6147   0.45    0.00
+ it,nsig0,nsig: 21 3281 3383 6989 6378   0.46    0.00
+ it,nsig0,nsig: 22 3383 3508 6989 6600   0.48    0.00
+ it,nsig0,nsig: 23 3508 3613 6989 6819   0.50    0.00
+ it,nsig0,nsig: 24 3613 3704 6989 7023   0.51    0.00
+ it,nsig0,nsig: 25 3704 3801 6989 7207   0.52    0.00
+ it,nsig0,nsig: 26 3801 3914 6989 7435   0.54    0.00
+ it,nsig0,nsig: 27 3914 4002 6989 7614   0.55    0.00
+ it,nsig0,nsig: 28 4002 4094 6989 7783   0.57    0.00
+ it,nsig0,nsig: 29 4094 4201 6989 7982   0.58    0.00
+ it,nsig0,nsig: 30 4201 4283 6989 8159   0.59    0.00
+ it,nsig0,nsig: 31 4283 4375 6989 8349   0.61    0.00
+ it,nsig0,nsig: 32 4375 4468 6989 8531   0.62    0.00
+ it,nsig0,nsig: 33 4468 4551 6989 8709   0.63    0.00
+ it,nsig0,nsig: 34 4551 4655 6989 8911   0.65    0.00
+ it,nsig0,nsig: 35 4655 4739 6989 9081   0.66    0.00
+ it,nsig0,nsig: 36 4739 4834 6989 9271   0.67    0.00
+ it,nsig0,nsig: 37 4834 4928 6989 9449   0.69    0.00
+ it,nsig0,nsig: 38 4928 5035 6989 9676   0.70    0.00
+ it,nsig0,nsig: 39 5035 5143 6989 9891   0.72    0.00
+ it,nsig0,nsig: 40 5143 5223 6989 10064   0.73    0.00
+ it,nsig0,nsig: 41 5223 5317 6989 10244   0.74    0.00
+ it,nsig0,nsig: 42 5317 5391 6989 10409   0.76    0.00
+ it,nsig0,nsig: 43 5391 5491 6989 10583   0.77    0.00
+ it,nsig0,nsig: 44 5491 5576 6989 10761   0.78    0.00
+ it,nsig0,nsig: 45 5576 5632 6989 10905   0.79    0.00
+ it,nsig0,nsig: 46 5632 5687 6989 11010   0.80    0.00
+ it,nsig0,nsig: 47 5687 5774 6989 11185   0.81    0.00
+ it,nsig0,nsig: 48 5774 5834 6989 11315   0.82    0.00
+ it,nsig0,nsig: 49 5834 5882 6989 11415   0.83    0.00
+ it,nsig0,nsig: 50 5882 5930 6989 11508   0.84    0.00
+ it,nsig0,nsig: 51 5930 5990 6989 11630   0.85    0.00
+ it,nsig0,nsig: 52 5990 6043 6989 11737   0.85    0.00
+ it,nsig0,nsig: 53 6043 6095 6989 11846   0.86    0.00
+ it,nsig0,nsig: 54 6095 6143 6989 11945   0.87    0.00
+ it,nsig0,nsig: 55 6143 6202 6989 12063   0.88    0.00
+ it,nsig0,nsig: 56 6202 6249 6989 12168   0.88    0.00
+ it,nsig0,nsig: 57 6249 6303 6989 12275   0.89    0.00
+ it,nsig0,nsig: 58 6303 6349 6989 12365   0.90    0.00
+ it,nsig0,nsig: 59 6349 6389 6989 12452   0.90    0.00
+ it,nsig0,nsig: 60 6389 6424 6989 12528   0.91    0.00
+ it,nsig0,nsig: 61 6424 6463 6989 12608   0.92    0.00
+ it,nsig0,nsig: 62 6463 6506 6989 12693   0.92    0.00
+ it,nsig0,nsig: 63 6506 6551 6989 12786   0.93    0.00
+ it,nsig0,nsig: 64 6551 6595 6989 12876   0.94    0.00
+ it,nsig0,nsig: 65 6595 6632 6989 12962   0.94    0.00
+ it,nsig0,nsig: 66 6632 6670 6989 13046   0.95    0.00
+ it,nsig0,nsig: 67 6670 6701 6989 13113   0.95    0.00
+ it,nsig0,nsig: 68 6701 6724 6989 13169   0.96    0.00
+ it,nsig0,nsig: 69 6724 6750 6989 13222   0.96    0.00
+ it,nsig0,nsig: 70 6750 6771 6989 13273   0.96    0.00
+ it,nsig0,nsig: 71 6771 6794 6989 13318   0.97    0.00
+ it,nsig0,nsig: 72 6794 6816 6989 13367   0.97    0.00
+ it,nsig0,nsig: 73 6816 6834 6989 13409   0.97    0.00
+ it,nsig0,nsig: 74 6834 6851 6989 13445   0.98    0.00
+ it,nsig0,nsig: 75 6851 6861 6989 13474   0.98    0.00
+ it,nsig0,nsig: 76 6861 6873 6989 13498   0.98    0.00
+ it,nsig0,nsig: 77 6873 6886 6989 13524   0.98    0.00
+ it,nsig0,nsig: 78 6886 6901 6989 13553   0.98    0.00
+ it,nsig0,nsig: 79 6901 6915 6989 13586   0.99    0.00
+ it,nsig0,nsig: 80 6915 6926 6989 13612   0.99    0.00
+ it,nsig0,nsig: 81 6926 6938 6989 13636   0.99    0.00
+ it,nsig0,nsig: 82 6938 6941 6989 13654   0.99    0.00
+ it,nsig0,nsig: 83 6941 6945 6989 13662   0.99    0.00
+ it,nsig0,nsig: 84 6945 6951 6989 13674   0.99    0.00
+ it,nsig0,nsig: 85 6951 6959 6989 13688   0.99    0.00
+ it,nsig0,nsig: 86 6959 6968 6989 13707   1.00    0.00
+ it,nsig0,nsig: 87 6968 6978 6989 13727   1.00    0.00
+ it,nsig0,nsig: 88 6978 6989 6989 13749   1.00    0.00
+ it,nsig0,nsig: 89 6989 6989 6989 13760   1.00    0.00
+ Header
+ write_IntegerI
+ write_SOILSETI
+ write_INTFSETI
+ write_SOILSTPR
+ write_INTSTPRR
+ write_PLASGPSI
+ write_MULTIPNR
+ write_SITGWNSI
+ write_LXXFILEI
+ write_CAMDPMDR
+ write_DUNCANHR
+ write_E__C___R
+ write_SIG1MAXR
+ write_PPTCOPCR
+ write_RELPERMR
+ write_RELPERIR
+ write_DSATURAR
+ write_SATEFFER
+ write_SATEFFIR
+ write_WPINIT_R
+ write_WPNDIN_R
+ write_WP_INTER
+ write_DARCYFLR
+ write_QINTNS_R
+ write_BOUNDWPI
+ write_BOUNDWPR
+ write_FORCES_R
+ write_PLATSETI
+ write_GEOTSETI
+ write_NNANSETI
+ write_FEANSETI
+ write_EPILSETI
+ write_CABLSETI
+ AddCxx
+ nNod, nGP :            0           0
+ NinTmp:           0
+ NodTmp:           0
+ bkhead:$$S000000H##         232
+ BkHead : $$S000000H##         232
+ bkhead:$$S000001H##         232
+ BkHead : $$S000001H##         232
+ Time Reading (ms) :           58
+ Time Stress  (ms) :            6
+ Time Writing (ms) :            6
+ Time (ms) :           74  1.562500000000000E-002
+ Done
+ iRes:            1
+ WrtLog:  T
+ MyStop           0
+ Total cpu  :   1.562500010000000E-002
+ Total wall :   0.104000000000000     
+ 
+ +------+--------+-------------+--------+-------------+--------+----------+
+ | Task |  Count |       CPU   |    %   |  Wall clock |    %   | Name     |
+ +------+--------+-------------+--------+-------------+--------+----------+
+ |    0 |      1 |        0.02 | 100.00 |        0.10 | 100.00 | Total    |
+ +------+--------+-------------+--------+-------------+--------+----------+
+ |   41 |      1 |        0.00 |   0.00 |        0.01 |  12.50 | rd_msh   |
+ |   42 |      1 |        0.00 |   0.00 |        0.01 |   7.69 | rd_lxx   |
+ |   43 |      1 |        0.02 | 100.00 |        0.01 |  12.50 | rd_wxx   |
+ +------+--------+-------------+--------+-------------+--------+----------+
+ |  100 |      1 |        0.00 |   0.00 |        0.07 |  67.31 | Rest     |
+ +------+--------+-------------+--------+-------------+--------+----------+
+ OK
+P_MAX =                     0.00000E+00
+NP_MAX=                         1

@@ -27,7 +27,7 @@ class ModelGeometry:
         self.step_phase = 2     # meters 
         self.load_value = 10    # kN/m
         self.geogrid_teta = 10  # degrees
-        self.mesh_size = MeshSize.COARSE.value  # meters
+        self.mesh_size = MeshSize.VERY_COARSE.value  # meters
 
 class SoilProperties:
     def __init__(self):

@@ -22,7 +22,7 @@ class Penalty:
     uTotalpenalty: float
 
 class HybridPSOHS:
-    def __init__(self, population_size=10, harmony_memory_size=10, max_iter=100,
+    def __init__(self, population_size=20, harmony_memory_size=40, max_iter=100,
                  inertia_weight=0.7, cognitive_weight=1.5, social_weight=2.0,
                  harmony_consideration_rate=0.9, pitch_adjustment_rate=0.3):
         # Set up logging
@@ -59,6 +59,8 @@ class HybridPSOHS:
         
         self.global_best_position = None
         self.global_best_score = float("inf")
+        self.global_best_penalty = 0.05
+        self.global_best_combined_score = float("inf")
 
         # Initialize HS harmonies
         self.hs_best_solution = None
@@ -67,6 +69,11 @@ class HybridPSOHS:
         #connect to the DataBase
         self.DataBase = PostgreSQLDatabase()
         self.DataBase.initialize_tables()
+
+        # Initialize missing variables
+        self.penalty_weight = 20.0  # Weight for penalty in combined score
+        self.processing_queue = []  # Queue for particles to be processed
+        self.hs_best_penalty = 0.05  # Same as global_best_penalty
 
     def _getBestLength(self, RebarDiameter):
         config = MainConfig()
@@ -193,7 +200,7 @@ class HybridPSOHS:
         cost = (inputData.rebar_dia * 10) + (inputData.nail_len * 15) + (abs(inputData.nail_teta - 60) * 5) + (inputData.nail_h_space * 2) + (inputData.nail_v_space * 1.5)
         return cost
     
-    def update_velocity_and_position(self, particle, algoName="", first_iteration=False):
+    def update_velocity_and_position(self, particle, algoName="", first_iteration=False, current_inertia=None):
         """Update particle velocity and position in PSO."""
         # Generate random coefficients for cognitive and social components
         r1, r2 = np.random.rand(2)
@@ -229,10 +236,13 @@ class HybridPSOHS:
                 float(particle.best_position.nail_v_space)
             ])
         else:
-            best_position = current_position.copy()
-            # For first iteration, add some randomness to best_position to encourage exploration
-            if first_iteration:
-                exploration_factor = 0.1
+            # If no best position yet, use global best or add randomness
+            if self.global_best_position:
+                best_position = self.global_best_position.copy()  # Use global best as reference
+            else:
+                best_position = current_position.copy()
+                # Add significant randomness for exploration when no best exists
+                exploration_factor = 0.2
                 best_position += np.random.uniform(-exploration_factor, exploration_factor, size=best_position.shape)
         
         # Handle global best position
@@ -267,8 +277,8 @@ class HybridPSOHS:
             max(self.nail_v_space_List) - min(self.nail_v_space_List)
         ]))
         
-        # Update velocity using PSO equation with inertia weight decay
-        inertia = self.inertia_weight * 0.99  # Gradually decrease inertia
+        # Use the passed inertia value
+        inertia = current_inertia if current_inertia is not None else self.inertia_weight
         
         particle.velocity = (
             inertia * particle.velocity +
@@ -327,7 +337,6 @@ class HybridPSOHS:
         # Log the particle's updated position
         logging.debug(f"Updated particle position: {particle.position}")
         
-
         return particle
 
     def generate_new_harmony(self):
@@ -510,9 +519,11 @@ class HybridPSOHS:
         Penalty = self._calculate_penalty(output)
         ElementPenaltyWeight = 1
         elementPenalty_Soil  = 1
-        uTotalPenaltyWeight = 10
+        uTotalPenaltyWeight = 20
 
         sum_penalty = ElementPenaltyWeight * Penalty.elementPenalty_Structures + elementPenalty_Soil * Penalty.elementPenalty_Soil + uTotalPenaltyWeight * Penalty.uTotalpenalty
+        sum_penalty *= 2
+        
         Cost = Price * (1 + sum_penalty)
         # Convert Cost from np.float64 to float to ensure compatibility
         if isinstance(Cost, np.float64):
@@ -521,13 +532,120 @@ class HybridPSOHS:
             sum_penalty = float(sum_penalty)
         return Cost, sum_penalty
 
+    def _save_status(self, iteration_count, processed_count, max_to_process, initialize=False):
+        """Save the optimization status to a JSON file."""
+        # Create output data dictionary
+        output_data = {
+            "iteration": iteration_count,
+            "global_best_score": self.global_best_score,
+            "processed_count": processed_count,
+            "max_to_process": max_to_process,
+            "_IsTerminate": False if initialize else None
+        }
+        
+        # Add report data with current best solution details
+        if hasattr(self, 'global_best_position') and self.global_best_position:
+            output_data["report"] = {
+                "best_rebar_dia": self.global_best_position.rebar_dia,
+                "best_nail_pattern": self.global_best_position.nail_len_pattern,
+                "best_nail_teta": self.global_best_position.nail_teta,
+                "best_nail_h_space": self.global_best_position.nail_h_space,
+                "best_nail_v_space": self.global_best_position.nail_v_space,
+                "best_score": self.global_best_score
+            }
+        
+        # Check if file exists and read existing data
+        file_path = 'optimization_status.json'
+        existing_data = {}
+        if os.path.exists(file_path):
+            try:
+                with open(file_path, 'r') as f:
+                    existing_data = json.load(f)
+            except (json.JSONDecodeError, IOError):
+                self.logger.warning(f"Could not read existing status file. Creating new file.")
+        
+        # Update existing data with new values
+        existing_data.update(output_data)
+        
+        # Preserve termination flag if it exists and we're not initializing
+        if not initialize and "_IsTerminate" in existing_data:
+            existing_data["_IsTerminate"] = existing_data.get("_IsTerminate", False)
+        
+        # Write updated data back to file
+        try:
+            with open(file_path, 'w') as f:
+                json.dump(existing_data, f, indent=4)
+        except IOError as e:
+            self.logger.error(f"Failed to write optimization status: {str(e)}")
+        
+    def close_plaxis_output(self):
+        """
+        Closes any running PLAXIS Output processes to free up resources.
+        This is useful to call periodically during optimization to prevent memory leaks.
+        """
+        self.logger.info("Attempting to close PLAXIS Output processes...")
+        try:
+            import subprocess
+            import platform
+            
+            if platform.system() == 'Windows':
+                # For Windows - forcefully terminate Plaxis2DXOutput.exe
+                result = subprocess.run(
+                    ['taskkill', '/F', '/IM', 'Plaxis2DOutput.exe'],
+                    shell=True, 
+                    stderr=subprocess.PIPE, 
+                    stdout=subprocess.PIPE
+                )
+                if result.returncode == 0:
+                    self.logger.info("Successfully closed PLAXIS Output processes")
+                else:
+                    self.logger.warning(f"No PLAXIS Output processes found to close: {result.stderr.decode()}")
+            else:
+                # For Linux/Mac
+                result = subprocess.run(
+                    ['pkill', '-f', 'Plaxis2DXOutput'],
+                    shell=True, 
+                    stderr=subprocess.PIPE, 
+                    stdout=subprocess.PIPE
+                )
+                if result.returncode == 0:
+                    self.logger.info("Successfully closed PLAXIS Output processes")
+                else:
+                    self.logger.warning("No PLAXIS Output processes found to close")
+                    
+            # Wait briefly to ensure processes are fully terminated
+            import time
+            time.sleep(1)
+            
+            return True
+        except Exception as e:
+            self.logger.error(f"Error closing PLAXIS Output processes: {str(e)}")
+            return False
     def optimize(self):
         """Run the hybrid PSO-HS optimization."""
+        # Initialize required variables if not already present
+        if not hasattr(self, 'global_best_combined_score'):
+            self.global_best_combined_score = float("inf")
+        if not hasattr(self, 'penalty_weight'):
+            self.penalty_weight = 10.0
+        if not hasattr(self, 'processing_queue'):
+            self.processing_queue = []
+        if not hasattr(self, 'hs_best_score'):
+            self.hs_best_score = float("inf")
+        if not hasattr(self, 'hs_best_penalty'):
+            self.hs_best_penalty = 0.05
+        if not hasattr(self, 'hs_best_solution'):
+            self.hs_best_solution = None
+        
+        # Track all particles for analysis
+        self.all_particles = []
+        
         config = MainConfig()
         # Initialize particle population
         self.particles: List[ParticleConfig] = []
         self.harmony_memory: List[ParticleConfig] = []
         model = InputModel.PlaxisModelInput()
+        self.global_best_penalty = 0.05
 
         # Add first model with specific input parameters
         first_position = InputData(
@@ -576,6 +694,7 @@ class HybridPSOHS:
                 # Check if input hash already exists in harmony memory before adding
                 if not any(existing_particle.input_hash == input_hash for existing_particle in self.harmony_memory):
                     self.harmony_memory.append(particle)
+                    self.all_particles.append(particle)
                 else:
                     self.logger.info(f"Skipping duplicate harmony with hash {input_hash}")
 
@@ -591,10 +710,9 @@ class HybridPSOHS:
                 if not any(existing_particle.input_hash == input_hash for existing_particle in self.particles):
                     particle.input_hash = input_hash
                     self.particles.append(particle)
+                    self.harmony_memory.append(particle)
                 else:
                     self.logger.info(f"Skipping duplicate PSO particle with hash {input_hash}")
-
-                self.particles.append(particle)
         
         else:
             # Create a temporary position for tracking the best solution
@@ -629,20 +747,26 @@ class HybridPSOHS:
 
         iteration_count = 0
         first_iteration = True
+        current_inertia = self.inertia_weight
+        
+        # Initialize status file
+        self._save_status(iteration_count, 0, len(self.particles) + len(self.harmony_memory), initialize=True)
+        
+        # Add initial particles to all_particles
+        self.all_particles.extend(self.particles)
         
         while iteration_count < self.max_iter:
             processed_count = 0
             max_to_process = len(self.particles) + len(self.harmony_memory)
             
             while processed_count < max_to_process:
-                # Process one input/result
-                # Insert initial results into database
+                # Get next input to process
                 input_hash, input_Data = self.DataBase._get_input_Data()
                 if not input_hash:
                     # No more inputs to process
                     break
                 
-                # Configure model
+                # Configure model with input parameters
                 config.STRUCTURAL_MATERIALS.geogrid.nail_length = input_Data.nail_len
                 config.STRUCTURAL_MATERIALS.geogrid.RebarDiameter = input_Data.rebar_dia
                 config.STRUCTURAL_MATERIALS.geogrid.HorizentalSpace = input_Data.nail_h_space 
@@ -658,114 +782,198 @@ class HybridPSOHS:
                 
                 # Create and store result
                 result_data = ResultData(
-                                Total_Displacement = round(max(d.utotal for d in output.ElementData.displacementData), 2),
-                                Total_Displacement_Allow = 0.03,
-                                max_Structure_Ratio = round(max(d.max_ratio_Structures for d in output.ElementData.elementForceData.values()), 2),
-                                max_PullOut_Ratio= round(max(d.max_ratio_Soil for d in output.ElementData.elementForceData.values()), 2),
-                                Penalty = round(Penalty, 2),
-                                Cost= round(Cost, 2))
+                    Total_Displacement = round(max(d.utotal for d in output.ElementData.displacementData), 4),
+                    Total_Displacement_Allow = 0.03,
+                    max_Structure_Ratio = round(max(d.max_ratio_Structures for d in output.ElementData.elementForceData.values()), 4),
+                    max_PullOut_Ratio = round(max(d.max_ratio_Soil for d in output.ElementData.elementForceData.values()), 4),
+                    Penalty = round(Penalty, 4),
+                    Cost = round(Cost, 4)
+                )
 
-                self.DataBase.insert_result(input_hash, status = 2, result_data = result_data)
+                self.DataBase.insert_result(input_hash, status=2, result_data=result_data)
                 
-                # result_data = ResultData(   
-                #                             Total_Distance= 2,
-                #                             Total_Distance_Allow= 10,
-                #                             Structure_Force= 30,
-                #                             Structure_Force_Allow= 40,
-                #                             Soil_Force= 60,
-                #                             Soil_Force_Allow= 70,
-                #                             Penalty= 2,
-                #                             Cost= 6000)
-                
-
-                # self.DataBase.insert_result(self.harmony_memory[0].input_hash, status = 2, result_data = result_data)
-
+                # Check for results that need processing
                 rowNumber = self.DataBase._get_result_NonCheck()
                 if rowNumber != 0:
                     inputHash = self.DataBase._get_lastHash_Result()
-                    result: ResultData = self.DataBase._get_result_baseHash(inputHash)
-                    AlgoName =  self.DataBase._get_algoNameBaseHash(inputHash)
-                    # Find particle index in list
-                    
-                    
+                    result = self.DataBase._get_result_baseHash(inputHash)
+                    AlgoName = self.DataBase._get_algoNameBaseHash(inputHash)
 
-                        
+                    # Update PSO particle if it matches the result
+                    particle_idx = next((idx for idx, p in enumerate(self.harmony_memory) if p.input_hash == inputHash), None)
+                    if particle_idx is not None:
+                        # Update particle in list
+                        self.harmony_memory[particle_idx].Cost = Cost
+                        if result.Cost < self.harmony_memory[particle_idx].best_score and result.Penalty < self.harmony_memory[particle_idx].best_penalty:
+                            self.harmony_memory[particle_idx].best_score = result.Cost
+                            self.harmony_memory[particle_idx].best_penalty = result.Penalty
+                            self.harmony_memory[particle_idx].best_position = self.harmony_memory[particle_idx].position
 
-                    if "PSO" in AlgoName:
-                        particle_idx = next((idx for idx, p in enumerate(self.particles) if p.input_hash == inputHash), None)
-                        if particle_idx is not None:
-                            # Update particle in list
-                            self.particles[particle_idx].Cost = Cost
-                            if result.Cost < self.particles[particle_idx].best_score:
-                                self.particles[particle_idx].best_score = result.Cost
-                                self.particles[particle_idx].best_position = self.particles[particle_idx].position
+                        # Calculate a combined fitness score
+                        combined_score = result.Cost + self.penalty_weight * result.Penalty
 
-                            if result.Cost < self.global_best_score:
-                                self.global_best_score = result.Cost
-                                self.global_best_position = self.particles[particle_idx].position
-
-                        NewParticle = self.update_velocity_and_position(
-                            self.particles[particle_idx], 
-                            "PSO",
-                            first_iteration=first_iteration
-                        )
-                        
-                        input_id, input_hash = self.DataBase.insert_input(NewParticle.position, status = 0)
-                        NewParticle.input_hash = input_hash
-                        # Check if input hash already exists in particles before adding
-                        if not any(existing_particle.input_hash == input_hash for existing_particle in self.particles):
-                            self.particles.append(NewParticle)
-                        else:
-                            self.logger.info(f"Skipping duplicate PSO particle with hash {input_hash}")
-                        self.DataBase._update_result_status(input_hash=inputHash, status=3)
-                        
-                    if "HS" in AlgoName:
-                        particle_idx = next((idx for idx, p in enumerate(self.harmony_memory) if p.input_hash == inputHash), None)
-                        if particle_idx is not None:
-                            self.harmony_memory[particle_idx].Cost = Cost
-                        
-                        # HS update
-                        new_harmony = self.generate_new_harmony()
-                        input_id, new_input_hash = self.DataBase.insert_input(new_harmony.position, status = 0)
-                        new_harmony.input_hash = new_input_hash
-
-
-                        #new_score = self.evaluate_fitness(new_harmony)
-                        if result.Cost < self.hs_best_score:
-                            self.hs_best_score = result.Cost
-                            self.hs_best_solution = new_harmony
-                        
-                        if result.Cost < self.global_best_score:
+                        # Update global best based on combined score
+                        if combined_score < self.global_best_combined_score:
+                            self.global_best_combined_score = combined_score
                             self.global_best_score = result.Cost
                             self.global_best_position = self.harmony_memory[particle_idx].position
 
-                        # Sort harmony memory by cost, keeping items with valid costs first
-                        valid_harmonies = [h for h in self.harmony_memory if h.Cost != float("inf")]
-                        invalid_harmonies = [h for h in self.harmony_memory if h.Cost == float("inf")]
                         
-                        # Sort valid harmonies by cost in ascending order
-                        valid_harmonies = sorted(valid_harmonies, key=lambda x: x.Cost)
+                        # Generate new particle position using PSO
+                        NewParticle = self.update_velocity_and_position(
+                            self.harmony_memory[particle_idx], 
+                            "PSO",
+                            first_iteration=first_iteration,
+                            current_inertia=current_inertia
+                        )
                         
-                        # Keep only harmony_memory_size-1 items (to make room for new_harmony)
-                        self.harmony_memory = valid_harmonies[:self.harmony_memory_size-1]
+                        # Try to insert the new particle, ensuring we add at least one item per iteration
+                        max_attempts = 10
+                        attempt_count = 0
+                        input_hash = None
                         
-                        # If we still have room, add some invalid harmonies
-                        remaining_slots = self.harmony_memory_size - 1 - len(self.harmony_memory)
-                        if remaining_slots > 0 and invalid_harmonies:
-                            self.harmony_memory.extend(invalid_harmonies[:remaining_slots])
+                        while attempt_count < max_attempts and input_hash is None:
+                            input_id, input_hash = self.DataBase.insert_input(NewParticle.position, status=0)
                             
-                        # Add the new harmony
-                        if not any(existing_particle.input_hash == new_input_hash for existing_particle in self.harmony_memory):
-                            self.harmony_memory.append(new_harmony)
+                            # Check if this is a duplicate
+                            if any(existing_particle.input_hash == input_hash for existing_particle in self.processing_queue):
+                                # Slightly modify the particle to make it unique
+                                if isinstance(NewParticle.position.nail_len_pattern, str):
+                                    pattern_dict = json.loads(NewParticle.position.nail_len_pattern)
+                                else:
+                                    pattern_dict = NewParticle.position.nail_len_pattern
+                                
+                                # Make small adjustments to create a unique particle
+                                if "min_length" in pattern_dict and pattern_dict["min_length"] < max(self.nail_len_List):
+                                    pattern_dict["min_length"] += 1
+                                elif "max_length" in pattern_dict and pattern_dict["max_length"] < max(self.nail_len_List):
+                                    pattern_dict["max_length"] += 1
+                                
+                                NewParticle.position.nail_len_pattern = json.dumps(pattern_dict)
+                                input_hash = None  # Reset to try again
+                            
+                            attempt_count += 1
+                        
+                        if input_hash:
+                            NewParticle.input_hash = input_hash
+                            # Replace the old particle with the updated one
+                            self.harmony_memory[particle_idx] = NewParticle
+                            # Add to processing queue if not already there
+                            self.processing_queue.append(NewParticle)
                         else:
-                            self.logger.info(f"Skipping duplicate harmony with hash {new_input_hash}")
+                            self.logger.warning("Failed to create a unique particle after multiple attempts")
+
                         self.DataBase._update_result_status(input_hash=inputHash, status=3)
+
+                    # Update harmony memory if it matches the result
+                    particle_idx = next((idx for idx, p in enumerate(self.harmony_memory) if p.input_hash == inputHash), None)
+                    if particle_idx is not None:
+                        self.harmony_memory[particle_idx].Cost = Cost
+                    
+                    
+                        # Generate new harmony using HS algorithm
+                        new_harmony = self.generate_new_harmony()
+                        
+                        # Try to insert the new harmony, ensuring we add at least one item per iteration
+                        max_attempts = 10
+                        attempt_count = 0
+                        new_input_hash = None
+                        
+                        while attempt_count < max_attempts and new_input_hash is None:
+                            input_id, new_input_hash = self.DataBase.insert_input(new_harmony.position, status=0)
+                            
+                            # Check if this is a duplicate
+                            if any(existing_particle.input_hash == new_input_hash for existing_particle in self.harmony_memory):
+                                # Slightly modify the harmony to make it unique
+                                if isinstance(new_harmony.position.nail_len_pattern, str):
+                                    pattern_dict = json.loads(new_harmony.position.nail_len_pattern)
+                                else:
+                                    pattern_dict = new_harmony.position.nail_len_pattern
+                                
+                                # Make small adjustments to create a unique harmony
+                                if "min_length" in pattern_dict and pattern_dict["min_length"] < max(self.nail_len_List):
+                                    pattern_dict["min_length"] += 1
+                                elif "max_length" in pattern_dict and pattern_dict["max_length"] < max(self.nail_len_List):
+                                    pattern_dict["max_length"] += 1
+                                
+                                new_harmony.position.nail_len_pattern = json.dumps(pattern_dict)
+                                new_input_hash = None  # Reset to try again
+                            
+                            attempt_count += 1
+                        
+                        if new_input_hash:
+                            new_harmony.input_hash = new_input_hash
+                        else:
+                            self.logger.warning("Failed to create a unique harmony after multiple attempts")
+                            # Create a more drastically different harmony as a last resort
+                            new_harmony = self.generate_new_harmony()
+                            new_harmony.position.nail_teta = random.choice(self.nail_teta_List)
+                            input_id, new_input_hash = self.DataBase.insert_input(new_harmony.position, status=0)
+                            new_harmony.input_hash = new_input_hash
+
+                    # Update best solutions
+                    if result.Cost < self.hs_best_score and result.Penalty < self.global_best_penalty:
+                        self.hs_best_score = result.Cost
+                        self.hs_best_penalty = result.Penalty
+                        self.hs_best_solution = new_harmony
+                    
+                    if result.Cost < self.global_best_score and result.Penalty < self.global_best_penalty:
+                        self.global_best_score = result.Cost
+                        self.global_best_position = self.harmony_memory[particle_idx].position
+
+                    # Update harmony memory
+                    valid_harmonies = [h for h in self.harmony_memory if h.Cost != float("inf")]
+                    invalid_harmonies = [h for h in self.harmony_memory if h.Cost == float("inf")]
+                    
+                    # Sort valid harmonies by cost in ascending order
+                    valid_harmonies = sorted(valid_harmonies, key=lambda x: x.Cost)
+                    
+                    # Keep only harmony_memory_size-1 items (to make room for new_harmony)
+                    self.harmony_memory = valid_harmonies[:self.harmony_memory_size-1]
+                    
+                    # If we still have room, add some invalid harmonies
+                    remaining_slots = self.harmony_memory_size - 1 - len(self.harmony_memory)
+                    if remaining_slots > 0 and invalid_harmonies:
+                        self.harmony_memory.extend(invalid_harmonies[:remaining_slots])
+                        
+                    # Add the new harmony if not a duplicate
+                    if not any(existing_particle.input_hash == new_input_hash for existing_particle in self.harmony_memory):
+                        self.harmony_memory.append(new_harmony)
 
                     break
 
             # After processing all particles in this iteration
             first_iteration = False
             iteration_count += 1
+            if iteration_count % 5 == 0:
+                self.close_plaxis_output()
+
+            # Update status file with current progress
+            self._save_status(iteration_count, processed_count, max_to_process)
+
+            # Check if termination is requested
+            try:
+                # Check if the status file exists
+                with open('optimization_status.json', 'r') as f:
+                    status_data = json.load(f)
+                    if status_data.get("_IsTerminate", False):
+                        self.logger.info("Termination requested via status file. Stopping optimization.")
+
+                        # Configure model
+                        config.STRUCTURAL_MATERIALS.geogrid.nail_length = self.global_best_position.nail_len
+                        config.STRUCTURAL_MATERIALS.geogrid.RebarDiameter = self.global_best_position.rebar_dia
+                        config.STRUCTURAL_MATERIALS.geogrid.HorizentalSpace = self.global_best_position.nail_h_space 
+                        config.STRUCTURAL_MATERIALS.geogrid.VerticalSpace = self.global_best_position.nail_v_space
+                        config.MODEL_GEOMETRY.geogrid_teta = self.global_best_position.nail_teta
+                        
+                        # Run model and calculate results
+                        model.config = config
+                        model.Project_Name = "OPTIMIZATION_PROJECT.p2dx"
+                        model.Create_Model()
+              
+                        break
+            except (FileNotFoundError, json.JSONDecodeError) as e:
+                self.logger.warning(f"Could not read optimization status file: {e}")
 
         # Return the best solution and score at the end
         return self.global_best_position, self.global_best_score

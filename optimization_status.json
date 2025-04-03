@@ -1,0 +1,15 @@
+{
+    "iteration": 0,
+    "global_best_score": Infinity,
+    "processed_count": 0,
+    "max_to_process": 82,
+    "_IsTerminate": false,
+    "report": {
+        "best_rebar_dia": 36,
+        "best_nail_pattern": "{\"max_length\": 15, \"min_length\": 6, \"pattern_type\": \"linear\"}",
+        "best_nail_teta": 5,
+        "best_nail_h_space": 1.5,
+        "best_nail_v_space": 2,
+        "best_score": 4704.9283
+    }
+}

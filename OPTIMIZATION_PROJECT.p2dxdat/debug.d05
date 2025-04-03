@@ -1,0 +1,1890 @@
+ Now: 02-04-2025 22:18:44.815
+ IF64        2021
+ CL : 
+ C:\Users\sobha\AppData\Local\Temp\PLAXIS~1\2DXCAL~1\PHASE_~1\data.s05 -GSE -mai
+ nLicense 3163
+ Ref: *
+ Win: 1.6.2.9200
+ Mem: 1 16204 (4129) MB (free) physical memory
+ Process ID, MemMB : 22652 16
+ EXE: C:\Program Files\Seequent\PLAXIS 2D 2024\kernel\
+ BLD: Jul 25 2024 18:13:52
+ CWD: C:\ 476.1 (15.7) GB (free)
+ WRK: C:\Users\sobha\AppData\Local\Temp\PLAXIS~1\2DXCAL~1\PHASE_~1\ 476.1 (15.7) GB (free)
+Time 22:18:44   
+  INFORMATION FROM PLASNEW:
+ IHAND,NDOF :            7           2
+ MultiStepping:            0
+ Restruc:Read_Inp_Msh1
+ MSHw1 : $$SOILBHSI##           8
+ MSHw1 : $$SOILBHPR##          16
+ MSHw1 : $$SOILBHLR##          16
+ MSHw1 : $$CLUSTERI##        8180
+ MSHw1 : $$SOILELMR##        6880
+ MSHw1 : $$NODECOOR##      111824
+ MSHw1 : $$SOILELMI##       51604
+ MSHw1 : $$INTFACEI##           0
+ MSHw1 : $$INTCHAII##           0
+ MSHw1 : $$INTFGPOR##           0
+ MSHw1 : $$GPOINTSR##      165120
+ MSHw1 : $$CONTOURI##        1080
+ MSHw1 : $$DISPLA2R##        2328
+ MSHw1 : $$DYDISP2R##           0
+ MSHw1 : $$FIXROTAI##           0
+ MSHw1 : $$SIGNODEI##           0
+ MSHw1 : $$MINBEAMI##         288
+ MSHw1 : $$TEXTILEI##        2712
+ MSHw1 : $$CONTRACI##           0
+ MSHw1 : $$NFORCESI##           8
+ MSHw1 : $$NFORCESR##           0
+ MSHw1 : $$TRALOADI##         372
+ MSHw1 : $$TRALOADR##        1200
+ MSHw1 : $$NODANCHI##           0
+ MSHw1 : $$FIXANCHI##           0
+ MSHw1 : $$FIXEDANR##           0
+ MSHw1 : $$WELLSCOI##           0
+ MSHw1 : $$DRAINLCI##           0
+ MSHw1 : $$CABLBCHI##           0
+ MSHw1 : $$CABLCONI##           0
+ MSHw1 : $$EMBBECHI##           0
+ MSHw1 : $$EMBBEAMI##           0
+ MSHw1 : $$WESMASSI##          12
+ MSHw1 : $$DISCTCHI##           0
+ MSHw1 : $$DISCONTI##           0
+ MSHw1 : $$DISCDIRI##           0
+ MSHw1 : $$_APPINFT##         190
+ Size MBEL :           10
+ Eps0Gt error :           0           0
+ leave RdMshW
+ p_DLL_CE 0:        140721905991680       140721905995792
+ p_DLL_CE 1:        140721905991680       140721905996128
+ nArgs:           3
+ Lic  : 3163
+ timms         536
+ GUID           1  {E4C93869-353A-4E5F-922C-C54FE16ECF95}
+ GUID           2  {0623675B-C48A-4D92-B15F-6CE8F530C593}
+ GUID           3  {5D41930B-805C-493F-8CF6-9F730F699F5B}
+ Name           1  SoilMat
+ Name           2  Plate
+ Name           3  Geogrid_PHI30_HSpace12
+  nSoilSet :            1
+  nGeoSet  :            1
+  nNNAnch  :            0
+  nFEAnch  :            0
+  nPlateSet:            1
+  nBeamSet :            0
+  nEPilSet :            0
+  nDiscontSet :            0
+  nCablBltSet :            0
+ Guid    1  {E4C93869-353A-4E5F-922C-C54FE16ECF95}    1      1 SoilMat
+ Guid    2  {0623675B-C48A-4D92-B15F-6CE8F530C593}    2      1 Plate
+ Guid    3  {5D41930B-805C-493F-8CF6-9F730F699F5B}    6      1 
+ Geogrid_PHI30_HSpace12
+ Init_MBeamTab           1
+ Init_MGeotTab           1
+ MATw : $$PROLAYSI## NBYTS=           4
+ MATw : $$PROLAYDI## NBYTS=           4
+ MATw : $$PROLAYSR## NBYTS=        1600
+ MATw : $$SOILXIDT## NBYTS=          46
+ Read_SOILXIDT
+ SoilIdxT           1           1
+ MATw : $$SOILXVLR## NBYTS=         400
+ Read_SoilXVLR
+ MATw : $$HTUWCT_R## NBYTS=          32
+ MATw : $$SOILXVLI## NBYTS=          40
+ MATw : $$SOILNAMT## NBYTS=          15
+ MATw : $$SOILNAMB## NBYTS=           8
+ MATw : $$ANCHXIDT## NBYTS=           4
+ Read_ANCHXIDT
+ MATw : $$ANCHNAMT## NBYTS=           4
+ MATw : $$ANCHNAMB## NBYTS=           0
+ MATw : $$BEAMXIDT## NBYTS=           4
+ MATw : $$FSBEAMPI## NBYTS=           8
+ MATw : $$FSBEAMNT## NBYTS=           4
+ MATw : $$FSBEAMNB## NBYTS=           0
+ MATw : $$EMBEXIDT## NBYTS=           4
+ MATw : $$FSEPILNT## NBYTS=           4
+ MATw : $$FSEPILNB## NBYTS=           0
+ MATw : $$FSEPXIDT## NBYTS=           4
+ MATw : $$EBEANAMT## NBYTS=           4
+ MATw : $$EBEANAMB## NBYTS=           0
+ MATw : $$SKINRESR## NBYTS=           0
+ MATw : $$LATRES_R## NBYTS=           0
+ MATw : $$PILE_MKR## NBYTS=           0
+ MATw : $$BONDSTRR## NBYTS=           0
+ MATw : $$GEOTXIDT## NBYTS=          46
+ GeotIdxT           1           3
+ MATw : $$GEOTEXTR## NBYTS=          48
+ MATw : $$GEOTXVLR## NBYTS=         400
+ Read_GeotXVLR
+ MATw : $$GEO_NE1R## NBYTS=           0
+ MATw : $$GEO_NE2R## NBYTS=           0
+ MATw : $$GEOTNAMT## NBYTS=          30
+ MATw : $$GEOTNAMB## NBYTS=          23
+ MATw : $$PLATXIDT## NBYTS=          46
+ Read_PLATXIDT
+ PlatIdxT           1           2
+ MATw : $$FSPLATPI## NBYTS=           8
+ MATw : $$MINDLINR## NBYTS=          80
+ MATw : $$PLATXVLR## NBYTS=         400
+ iSet,j:           1           3  0.0000000E+00
+ MATw : $$PLAT_MKR## NBYTS=           0
+ MATw : $$BEAMNAMT## NBYTS=          13
+ MATw : $$BEAMNAMB## NBYTS=           6
+ MATw : $$FSPLATNT## NBYTS=           4
+ MATw : $$FSPLATNB## NBYTS=           0
+ MATw : $$DBASEIDI## NBYTS=          12
+ MATw : $$COLOURSI## NBYTS=          12
+ MATw : $$METADATT## NBYTS=          16
+ MATw : $$COMMENTT## NBYTS=          16
+ MATw : $$GUIDS__T## NBYTS=         130
+ MATw : $$MATINDXT## NBYTS=         130
+ MATw : $$NAMES__T## NBYTS=          50
+ MATw : $$NAMES__B## NBYTS=          37
+ MATw : $$UNITS__T## NBYTS=          44
+ nUnits:           7
+ Unit L: m
+ Unit F: kN
+ Unit T: day
+ Unit Temp: K
+ OneAtm:   100.000000000000       [F/L2]
+ MATw : $$GRAVTDII## NBYTS=           4
+ MATw : $$_APPINFT## NBYTS=         190
+ After RdMatW
+ PropSoil:
+ 
+Set                  1
+MTypeL             156
+   1       2.50000E+04
+   2       2.00000E-01
+   3       5.00000E-01
+   4       1.50000E+01
+   9       2.00000E+01
+  10       2.00000E+01
+  13       1.00000E+00
+  20       3.33333E-01
+  21       1.00000E-09
+  22       9.99000E-01
+  27       1.00000E+15
+  28       4.95000E-01
+  31       1.02795E+00
+  32       1.62375E+00
+  34       5.00000E-01
+  35       1.00000E+02
+  36       1.86286E+04
+  37       9.00000E-01
+  38       2.00000E+04
+  39       5.00000E-01
+  40       2.00000E+04
+  91       1.00000E+00
+  99       1.00000E+00
+ 101       5.00000E-01
+ 102       5.00000E-01
+ 103       1.00000E+00
+ 105       2.00000E+00
+ 106      -1.06000E+00
+ 107      -2.37000E+00
+ 110       1.00000E+04
+ 111       1.00000E+00
+ 112       6.20347E-02
+ 113       3.83000E+00
+ 114       1.37740E+00
+ 115       1.25000E+00
+ 117       1.00000E+00
+ 181       1.00000E+00
+ 184       2.60000E+00
+ 191       1.00000E+01
+ 192       1.30000E+01
+ 193       7.70000E+01
+ PropGeo:
+   1       1.23700E+05
+   2       1.23700E+05
+   3       6.18501E+04
+   4       0.00000E+00
+   5       1.00000E+10
+   6       1.00000E+10
+ PropMind:
+ 
+Set                  1
+   1       8.33250E+06
+   2       2.00000E-01
+   3       1.00010E-01
+   4       2.30000E+00
+   5       1.00000E+12
+   6       1.00000E+07
+   7       0.00000E+00
+   8       0.00000E+00
+   9      -1.00000E+00
+  10       1.00000E+07
+  11       0.00000E+00
+  12       1.00000E+00
+  13       0.00000E+00
+  14       0.00000E+00
+  15       0.00000E+00
+  16       0.00000E+00
+  17       0.00000E+00
+  18       0.00000E+00
+  19       0.00000E+00
+  20       0.00000E+00
+ nMindSet,nEpilProp:           1           0
+ MTypeL A
+     156
+ Get_Settings_from_SF5
+ iPhase, Wxx, Lxx:           5
+ fGUlt=   1.00000000000000     
+ iSolver:           2           6
+ mkl_set_Num_Threads            6
+ mkl_get_max_Threads:           6
+ mkl_get_max_Threads:           6
+ iHand from SF5           7
+ FacKwNew:  1.000000000000000E-008
+ isBishop            :  F
+ isCoupled           :  F
+ isTHM               :  F
+ isTemperature       :  F
+ isGWFCal            :  F
+ isStState           :  F
+ isTransient         :  F
+ isThermalFlow       :  F
+ isTHSteadyState     :  F
+ isThermalSteadyState:  F
+ isTHTransient       :  F
+ isStStateWithThermalFromPrevious:  F
+ isDynamic           :  F
+ isUDynamic          :  F
+ isDynamicConsolidation:  F
+ isDynamicCoupled    :  F
+ nDof after SF5:            2
+ Reading file 
+ C:\Users\sobha\AppData\Local\Temp\PLAXIS~1\2DXCAL~1\PHASE_~1\data.W05
+ GW_dum  ios=           0
+ MFreat =           2
+ NGWIPts =            0
+ NConsBC =            0
+ RDGW_ A
+ RdGW_ (C:\Users\sobha\AppData\Local\Temp\PLAXIS~1\2DXCAL~1\PHASE_~1\data.W05)
+           0
+ back from bopen
+ BkName,nByts,ios: $$PHASNAMT##          57           0
+ BkName,nByts,ios: $$PRBNDWPI##        1468           0
+ BkName,nByts,ios: $$PRBNDWPR##        2440           0
+ BkName,nByts,ios: $$NODPRESR##       55912           0
+ BkName,nByts,ios: $$WPINIT_R##       82560           0
+ BkName,nByts,ios: $$WP_INTER##           0           0
+ BkName,nByts,ios: $$DISPERMI##           0           0
+ BkName,nByts,ios: $$INTPERMI##           0           0
+ BkName,nByts,ios: $$INTFSETI##           0           0
+ BkName,nByts,ios: $$DISCSETI##           0           0
+ BkName,nByts,ios: $$WELLSPRR##           0           0
+ BkName,nByts,ios: $$DRAINLAI##           0           0
+ BkName,nByts,ios: $$DRAINLHR##           0           0
+ BkName,nByts,ios: $$GWFBC__I##       17600           0
+ BkName,nByts,ios: $$GWFBCRVR##        8800           0
+ BkName,nByts,ios: $$GWFBCHDR##       17600           0
+ BkName,nByts,ios: $$THFBC__I##           0           0
+ BkName,nByts,ios: $$THFBCRVR##           0           0
+ BkName,nByts,ios: $$THFBCXPR##           0           0
+ BkName,nByts,ios: $$THFPARAR##         240           0
+ BkName,nByts,ios: $$THF_TDPR##        1440           0
+ BkName,nByts,ios: $$THFINI_I##        4000           0
+ BkName,nByts,ios: $$THFINIVR##        1680           0
+ BkName,nByts,ios: $$THFBCCLI##           0           0
+ BkName,nByts,ios: $$THFBCCLR##           0           0
+ BkName,nByts,ios: $$GWFFUNCI##           0           0
+ BkName,nByts,ios: $$FFUNCHAR##           0           0
+ BkName,nByts,ios: $$FFUNCTAR##           0           0
+ BkName,nByts,ios: $$FFUNCLIR##           0           0
+ BkName,nByts,ios: $$ELEMDRYI##        3440           0
+ nVals =          860
+ BkName,nByts,ios: $$INIHEADR##      103200           0
+ BkName,nByts,ios: $$PHREAT_I##          52           0
+ nPhreatLines           7
+           1           0           2
+           2           0           0
+           3           0           0
+           4           0           0
+           5           0           0
+           6           0           0
+           7           0           0
+ BkName,nByts,ios: $$PHREAT_R##          32           0
+   1   1   -32.2500   -20.0000    10.0000
+   1   2    17.2500   -20.0000    10.0000
+   2   1     0.0000     0.0000     0.0000
+   2   2     0.0000     0.0000     0.0000
+   3   1     0.0000     0.0000     0.0000
+   3   2     0.0000     0.0000     0.0000
+   4   1     0.0000     0.0000     0.0000
+   4   2     0.0000     0.0000     0.0000
+   5   1     0.0000     0.0000     0.0000
+   5   2     0.0000     0.0000     0.0000
+   6   1     0.0000     0.0000     0.0000
+   6   2     0.0000     0.0000     0.0000
+   7   1     0.0000     0.0000     0.0000
+   7   2     0.0000     0.0000     0.0000
+ BkName,nByts,ios: $$PHREAT2R##          48           0
+   1   1   -32.2500   -20.0000    10.0000
+   1   2    17.2500   -20.0000    10.0000
+   2   1     0.0000     0.0000     0.0000
+   2   2     0.0000     0.0000     0.0000
+   3   1     0.0000     0.0000     0.0000
+   3   2     0.0000     0.0000     0.0000
+   4   1     0.0000     0.0000     0.0000
+   4   2     0.0000     0.0000     0.0000
+   5   1     0.0000     0.0000     0.0000
+   5   2     0.0000     0.0000     0.0000
+   6   1     0.0000     0.0000     0.0000
+   6   2     0.0000     0.0000     0.0000
+   7   1     0.0000     0.0000     0.0000
+   7   2     0.0000     0.0000     0.0000
+ BkName,nByts,ios: $$WLSEGM_I##           8           0
+ nPhreatLines:           7
+ nSize       :           1
+ nPhreatSeg  :           1
+ BkName,nByts,ios: $$BCPRECII##          12           0
+ BkName,nByts,ios: $$BCPRECIR##          24           0
+ BkName,nByts,ios: $$BCGFLOWI##          24           0
+ BkName,nByts,ios: $$WESMASSR##           0           0
+ BkName,nByts,ios: $$SLPRECOR##          24           0
+ BkName,nByts,ios: $$SLPRECAI##          24           0
+ BkName,nByts,ios: $$_APPINFT##         376           0
+ BkName,nByts,ios: $$ENDOFFII##           0           0
+ ibks,ibkst :           33          43
+ Create_Head_Phreatic
+ i,type,npoint           1           0           0
+ i,type,npoint           2           0           0
+ i,type,npoint           3           0           0
+ i,type,npoint           4           0           0
+ i,type,npoint           5           0           0
+ i,type,npoint           6           0           0
+ nConsBC,iXMinCBC           0           1
+ iv :   1   1   4   2   7   8
+ iv :   2   2   5   3   9  10
+ iv :   3   3   6   1  11  12
+ ivi:   1   1   3   5   7   9
+ ivi:   2   2   4   6   8  10
+ xMin, xMax, yMin, yMax  -30.0000000000000        15.0000000000000     
+  -20.0000000000000       0.000000000000000E+000
+ RdGW-A iPPTCO:           0
+ RdGW-A  PPTCO:  0.000000000000000E+000
+ Nel:         860
+ nClust:        6
+ nFEAnch:       0
+ nBeamCh:       0
+ nNNAnch:       0
+ nEPilCh:       0
+ nPlate :      10
+ nPlateCh :    10
+ nGeotCh :      5
+ nInterCh :     0
+ nIntel :       0
+ nPileElm       0
+ nCablBltEl     0
+ Current phase:Phase_5
+ Modyn:           0
+ Unknown block [Lxx]: $$BCFIELDR##
+ Unknown block [Lxx]: $$BCFIELDI##
+ Unknown block [Lxx]: $$DECONFCR##
+ Unknown block [Lxx]: $$_APPINFT##
+ iValD           2
+ iValF           0
+ iValT          -1
+ Opened file C:\Users\sobha\AppData\Local\Temp\PLAXIS~1\data.convd.rr5
+ MTypeL B
+     156
+ Cluster,iElSet,iMod           1          -1          56         156
+ Cluster,iElSet,iMod           2          -1          56         156
+ Cluster,iElSet,iMod           3          -1          56         156
+ Cluster,iElSet,iMod           4          -1          56         156
+ Cluster,iElSet,iMod           5          -1          56         156
+ Cluster,iElSet,iMod           6           1           6         106
+ NelAct:         759  of          860
+ NonKr   :            0
+ NonWBulk:            0
+ MTypeL C
+     106
+ MaxModel           6
+ PropMind
+ 
+Set                  1
+   1       8.33250E+06
+   2       2.00000E-01
+   3       1.00010E-01
+   4       2.30000E+00
+   5       1.00000E+12
+   6       1.00000E+07
+   9      -1.00000E+00
+  10       1.00000E+07
+  12       1.00000E+00
+ nMind(el):          10          12           1
+ UpdWPres
+ UpdWPres End
+ Restruc:Rd_Prep1
+ Size bBuf, rBuf:      206400       51600
+ BFileS2D           7
+ PLAXIS 9.20 PLASTIC       003      DUN                                       
+ 
+iPrevCalc from previous phase:    7
+ BKNAME,NBYTS : $$64BVERSI##           0
+ BKNAME,NBYTS : $$PHASNAMT##          57
+ Skipping [XXX]$$PHASNAMT##
+ BKNAME,NBYTS : $$PHASENRI##           4
+ Skipping [XXX]$$PHASENRI##
+ BKNAME,NBYTS : $$INTEGERI##          40
+       10320        6989           0           0          10           0
+         113         860
+ BKNAME,NBYTS : $$MULTIPNR##         208
+ BKNAME,NBYTS : $$NDEXPRSR##           0
+ BKNAME,NBYTS : $$SITGWNSI##           4
+ BKNAME,NBYTS : $$SOLVERSI##           8
+ Skipping [XXX]$$SOLVERSI##
+ BKNAME,NBYTS : $$SUCTIONR##       82560
+ BKNAME,NBYTS : $$DSATURAR##       82560
+ BKNAME,NBYTS : $$SATEFFER##       82560
+ Skipping [XXX]$$SATEFFER##
+ BKNAME,NBYTS : $$WPINIT_R##       82560
+ BKNAME,NBYTS : $$WPNDIN_R##       55912
+ BKNAME,NBYTS : $$WP_INTER##           0
+ BKNAME,NBYTS : $$CALTYPEI##          40
+ Skipping [XXX]$$CALTYPEI##
+ BKNAME,NBYTS : $$SMATSETI##          24
+ BKNAME,NBYTS : $$INTFSETI##           0
+ BKNAME,NBYTS : $$GEOTSETI##          20
+ BKNAME,NBYTS : $$PLATSETI##          40
+ BKNAME,NBYTS : $$FEANSETI##           0
+ BKNAME,NBYTS : $$NNANSETI##           0
+ BKNAME,NBYTS : $$FSLOA01R##           0
+ BKNAME,NBYTS : $$FSLOA03R##        1200
+ Skipping [XXX]$$FSLOA03R##
+ BKNAME,NBYTS : $$FSLOAD1R##           0
+ BKNAME,NBYTS : $$APLOAD1R##           0
+ BKNAME,NBYTS : $$APLOAD3R##        1200
+ BKNAME,NBYTS : $$PROLAYSI##           4
+ BKNAME,NBYTS : $$PROLAYSR##        1600
+ BKNAME,NBYTS : $$CLUSINFI##          72
+ BKNAME,NBYTS : $$PLASGPSI##       41280
+ BKNAME,NBYTS : $$IPLHISTI##      206400
+ BKNAME,NBYTS : $$ITERINFR##         240
+ BKNAME,NBYTS : $$CALINFOR##          88
+ BKNAME,NBYTS : $$UTOT___R##      111824
+ BKNAME,NBYTS : $$DUTOT__R##      111824
+ Skipping [XXX]$$DUTOT__R##
+ BKNAME,NBYTS : $$DUTOTE_R##           0
+ BKNAME,NBYTS : $$DUTOTPHR##      111824
+ Skipping [XXX]$$DUTOTPHR##
+ BKNAME,NBYTS : $$UTOTPH_R##      111824
+ BKNAME,NBYTS : $$ROTAE0TR##        1440
+ BKNAME,NBYTS : $$DROTTOTR##         480
+ Skipping [XXX]$$DROTTOTR##
+ BKNAME,NBYTS : $$ROTTOT_R##         480
+ BKNAME,NBYTS : $$FORCEXYR##          16
+ BKNAME,NBYTS : $$FORCES_R##          24
+ Skipping [XXX]$$FORCES_R##
+ BKNAME,NBYTS : $$BFORCESI##         324
+ Skipping [XXX]$$BFORCESI##
+ BKNAME,NBYTS : $$BFORCESR##        1296
+ Skipping [XXX]$$BFORCESR##
+ BKNAME,NBYTS : $$SOILSTPR##      412800
+ BKNAME,NBYTS : $$SIG1_0ER##       82560
+ Skipping [XXX]$$SIG1_0ER##
+ BKNAME,NBYTS : $$SIG1MAXR##       82560
+ BKNAME,NBYTS : $$VOIDRATR##       82560
+ BKNAME,NBYTS : $$INTSTPRR##           0
+ BKNAME,NBYTS : $$BEAMFSTR##        3744
+ BKNAME,NBYTS : $$HOOP_BMR##         480
+ BKNAME,NBYTS : $$BMFORMXR##        3840
+ BKNAME,NBYTS : $$GEOTEXFR##        9040
+ BKNAME,NBYTS : $$GTFORMXR##       18080
+ BKNAME,NBYTS : $$ANCHRFOR##           0
+ BKNAME,NBYTS : $$DISPLA2R##        2328
+ Skipping [XXX]$$DISPLA2R##
+ BKNAME,NBYTS : $$CAMDPMDR##       82560
+ BKNAME,NBYTS : $$CAMDPMDI##           0
+ BKNAME,NBYTS : $$MAXNORMR##          48
+ BKNAME,NBYTS : $$MAXNRMXR##          80
+ BKNAME,NBYTS : $$E__C___R##      165120
+ BKNAME,NBYTS : $$V0CLUSTR##          48
+ Skipping [XXX]$$V0CLUSTR##
+ BKNAME,NBYTS : $$DVOLCLUR##          96
+ BKNAME,NBYTS : $$DUNCANHR##       82560
+ BKNAME,NBYTS : $$LXXFILEI##           4
+ BKNAME,NBYTS : $$STVARALR##      148992
+ wrong model or ... old:           6           2         204
+ wrong model or ...,new:           0           0         204
+ BKNAME,NBYTS : $$DECONF0R##          48
+ Skipping [XXX]$$DECONF0R##
+ BKNAME,NBYTS : $$DECONFAR##          48
+ BKNAME,NBYTS : $$DECONFTR##          48
+ Skipping [XXX]$$DECONFTR##
+ BKNAME,NBYTS : $$DECOIADI##           0
+ BKNAME,NBYTS : $$DECOJADI##           0
+ BKNAME,NBYTS : $$DECO_ADR##           0
+ BKNAME,NBYTS : $$BOUNDWPI##        1200
+ BKNAME,NBYTS : $$BOUNDWPR##        2400
+ BKNAME,NBYTS : $$RELPERMR##       82560
+ BKNAME,NBYTS : $$DARCYFLR##           0
+ BKNAME,NBYTS : $$FLOWEPPR##           0
+ BKNAME,NBYTS : $$HYDRGRDR##           0
+ BKNAME,NBYTS : $$QINTNS_R##           0
+ BKNAME,NBYTS : $$RELPERIR##           0
+ BKNAME,NBYTS : $$PPTCOPCR##           8
+ BKNAME,NBYTS : $$IGNRSUCI##           4
+ BKNAME,NBYTS : $$GWFBC__I##           0
+ BKNAME,NBYTS : $$GWFBC__R##           0
+ BKNAME,NBYTS : $$CALCTIMR##          32
+ BKNAME,NBYTS : $$CALCTIMT##          78
+ Skipping [XXX]$$CALCTIMT##
+ BKNAME,NBYTS : $$DISCSETI##           0
+ BKNAME,NBYTS : $$CABLSETI##           0
+ BKNAME,NBYTS : $$IPRCABLI##           0
+ BKNAME,NBYTS : $$IHIPRCAI##           0
+ BKNAME,NBYTS : $$SIGINSCR##           0
+ BKNAME,NBYTS : $$UTOTPHPR##         960
+ BKNAME,NBYTS : $$UTOTPHGR##        9040
+ BKNAME,NBYTS : $$_APPINFT##         562
+ Skipping [XXX]$$_APPINFT##
+ BKNAME,NBYTS : $$ENDOFFII##           0
+ SoilExtra( 2, iSet )   1.00000000000000                1
+  iGapClosure            1
+ Just After FroBxx
+ 
+ nConsBC =         173
+ Wxx from SF4, iWxxSF4 =           5
+ Wxx from XXX, iSitGWxx=           5
+ nHand,iUpd,iUnd,iFlo,iPhC:           7           0          10           0
+           0
+ iCalcType:           80           7
+ find_POPs_from_BHs           0
+ Init_Pc_GamP           1
+ iUsePPPrev:           0
+ UpdWPres
+ UpdWPres End
+ AddCxx
+ bkhead:$$S000000H##         232
+ end cxx
+ In OpenForm in DVFForm32/64
+ AppName : Plaxis 2D           9
+ CalcType: Plastic           7
+ GeomType:            0
+ Project : C:\Users\sobha\AppData\Local\Temp\PLAXIS~1\2DXCAL~1\PHASE_~1\data
+          65
+ BatStr  : <Phase 5>           9
+ Is2Dx:           1
+ Showmode 23
+INITIALIZE 200 "Plaxis 2D" "Plastic" "" "C:\Users\sobha\AppData\Local\Temp\PLAXIS~1\2DXCAL~1\PHASE_~1\data" "<Phase 5>"
+ nMdEl:          12
+ MaxBmCh:          10
+ Info1
+ NNN    in Info 1 :            0
+ nFirst in Info 1 :            1
+ Prep_EndBearing           0
+ beta:  -1.00000000000000       -1.00000000000000       -1.00000000000000     
+ beta:  -1.00000000000000       -1.00000000000000       -1.00000000000000     
+ beta:  -1.00000000000000       -1.00000000000000       -1.00000000000000     
+ beta:  -1.00000000000000       -1.00000000000000       -1.00000000000000     
+ beta:  -1.00000000000000       -1.00000000000000       -1.00000000000000     
+ beta:  -1.00000000000000       -1.00000000000000       -1.00000000000000     
+ New elements !
+ New elements !
+ newelm: T
+ bounsc           1
+ bounsc           2
+ nRotSpring           0
+ FillLMat
+ nnzA :        14259
+iC           1      1      1      1      1       1      1      1      1      1
+             1      1      1      1      1       1      1      1      1      1
+ kk,ms:           1           0
+ kk,ms:           2           0
+ nnz  :        14256       14259
+ nnz  :        14256
+ nErr:           0
+ nnz  :       14256  73.7850 %
+ Alloc_Sp_AMat       14038       14256
+ SymDif/Sum   :   0.00000E+00  0.00000E+00  0.00000E+00
+ SMat            2          15
+ SymDif/Sum Bm:   2.00402E-08  1.20083E+09  4.24321E+08
+ Determine_Sp_i0A_i1A           1                 39222             197065444
+         931        5024
+           1           0           0
+        3787         745         931
+MOVEBC, NODE : 1497  LOCAL DOF :   3
+ Process ID, MemMB : 22652 81
+ PASSMBMEM 81
+  iMat     :            3
+ iUsePardiso:           1
+ iUsePardiso:           1
+ Fill_Pard T           0
+ try SpMtx
+ Size iiA:       14039           0
+ Size jjA:       14259           0
+ Size  AA:       14256           0
+ nnz:       14256
+ Size ia_Pard:       14039       14039
+ Size ja_Pard:       14256       14259
+ Size  a_Pard:       14256       14256
+ end fill           0
+ size amat  :       19321
+ size a_pard:       14256
+ dasum a_Pard:   1870216.31291548            14054   1870216.31291548     
+ Filter SpMtx:           0
+       iUsePardiso:           1
+ GetFreeMem
+ Tot. Int.:     16593084  kB        16204  Mb
+ Internal :      4192620  kB         4094  Mb free
+ InSwap   :     13778176  kB        13455  Mb free
+ Total    :     17970796  kB        17549  Mb free
+ mkl_get_max_threads           6
+ n_in, nthr :        14038           1       14257
+ iParm(2):           0
+ iparm(3):           1
+ call pardiso 11
+ pardiso          11         102
+ iparm(3):           1
+ done pardiso 11, error=           0
+ kbused, kbpeak:          554        3498
+ nnz L :       14437           0  Mb
+ MFlops:           0
+ Mem_Internal:     4192620
+ iUsePardiso :            1
+ sym-pos-def
+ Checking unrelated dofs
+       14030  dofs only used once of        14038
+           8  max dofs for dof        3789
+ First infected dof        3789           8
+           1 nDone :       14038 of        14038           0 T
+ Check time            0 ms
+ Dof     3789 found, node:    1867       3      0.0000     -8.7000
+ about to call pardiso_dec
+ Mem: 2 16204 (4096) MB (free) physical memory
+ Process ID, MemMB : 22652 85
+ call pardiso 22, ityp           2
+ sec0:   80325.5390625000     
+ size ia:       14039         2320516825280
+ size ja:       14256         2320516882624
+ size  a:       14256         2320516940096
+ pardiso          22           1
+ pardecomp:  0.000000000000000E+000  0.000000000000000E+000
+ done pardiso 22, error=           0
+ back from pard_gg
+Decomp :   0.10 s
+ Process ID, MemMB : 22652 85
+ PASSMBMEM 85
+ pardiso mtype           2
+  Pardiso_Clean; errorPard :            0
+ Process ID, MemMB : 22652 83
+ PASSMBMEM 83
+ UpdWPres
+ UpdWPres End
+ bounsc           3
+ No static condensation
+ getNewDof, iList(1:nDof):           0           0
+ Nnew=        12450 N=        14038
+ nRotSpring           0
+ FillLMat
+ nnzA :       348971
+iC          30     29     28     27     26      25     38     36     13     33
+            31     10     28     26      7      47     45     43     41     39
+ kk,ms:           1           0
+ kk,ms:           2           1
+ nnz  :       293814      348971
+ nnz  :       293814
+ nErr:           0
+ nnz  :      293814  14.1151 %
+  NMAT=     2081551  NREAD1=           1  NREAD2=           1
+  nMat~          15  Mb
+ Alloc_Sp_AMat       12450      293814
+ ideform
+       2      0      1      1      1       0      0      0      0   1000
+       0     -1     60      6     15       5      0      0      3      0
+       0      0      0      1      1       0      0      0      1      0
+ InitDS, LADV,LTYPE :            1           1
+ Ladv0,lType,nDof:           1           1           2
+ SumG:    72606127.4961211     
+
+NSTEP=   1
+ LoadAc start Active
+   0.000E+00  0.000E+00  0.000E+00   1.000E+00  0.000E+00  0.000E+00
+   0.000E+00  0.000E+00  0.000E+00   0.000E+00  0.000E+00
+ LoadAc end   Active
+   0.000E+00  0.000E+00  0.000E+00   1.000E+00  0.000E+00  0.000E+00
+   0.000E+00  0.000E+00  0.000E+00   0.000E+00  0.000E+00
+Active   0.000E+00  0.000E+00  0.000E+00   1.000E+00  0.000E+00  0.000E+00
+         0.000E+00  0.000E+00  0.000E+00   0.000E+00  0.000E+00
+ SumG:    197312927.162959     
+ iTest, MakMat           0 T
+Time 22:18:45          1.00
+ FMAMAT T  0.000000000000000E+000
+ SMat            1          30
+ SymDif/Sum   :   1.41474E-06  1.66707E+10  4.08341E+09
+ SMat            6          10
+ SymDif/Sum Bm:   2.51302E-07  8.41510E+09  2.98503E+09
+ Determine_Sp_i0A_i1A           1               9958528             155002500
+        1446          16
+           1           0         122
+        2776           0        1446
+ dasum AA:   20752177134.9807     
+ dasum AA:   20657579144.7869     
+ bound3n:           1
+ Time for forming matrix:
+Time 22:18:45          0.00
+ Process ID, MemMB : 22652 87
+ PASSMBMEM 87
+  iMat     :            3
+ iUsePardiso:           1
+ iUsePardiso:           1
+ Fill_Pard T           1
+ try SpMtx
+ Size iiA:       12451       14039
+ Size jjA:      348971       14256
+ Size  AA:      293814       14256
+ nnz:      293814
+ Size ia_Pard:       14039       12451
+ Size ja_Pard:      293814      348971
+ Size  a_Pard:      293814      293814
+ end fill           1
+ size amat  :     2081551
+ size a_pard:      293814
+ dasum a_Pard:   20657579155.7869           289650   20657579155.7870     
+ Filter SpMtx:           1
+       iUsePardiso:           1
+ GetFreeMem
+ Tot. Int.:     16593084  kB        16204  Mb
+ Internal :      4190192  kB         4091  Mb free
+ InSwap   :     13769648  kB        13446  Mb free
+ Total    :     17959840  kB        17538  Mb free
+ mkl_get_max_threads           1
+ n_in, nthr :        12450           1      293815
+ iParm(2):           2
+ iparm(3):           1
+ call pardiso 11
+ pardiso          11          32
+ iparm(3):           1
+ done pardiso 11, error=           0
+ kbused, kbpeak:         9654       19887
+ nnz L :      875329           7  Mb
+ MFlops:         106
+ Mem_Internal:     4190192
+ iUsePardiso :            1
+ sym-pos-def
+ Checking unrelated dofs
+         133  dofs only used once of        12450
+         162  max dofs for dof        8481
+ First infected dof        8481         162
+           1 nDone :        4629 of        12450        7821 T
+           1 nDone :       12448 of        12450           2 T
+           2 nDone :       12450 of        12450           0 F
+ Check time            0 ms
+ Dof     8481 found, node:    5005       1    -13.6411    -12.4944
+ about to call pardiso_dec
+ Mem: 2 16204 (4088) MB (free) physical memory
+ Process ID, MemMB : 22652 100
+ call pardiso 22, ityp           2
+ sec0:   80325.6250000000     
+ size ia:       14039         2320516825280
+ size ja:      293814         2320513461312
+ size  a:      293814         2320532570496
+ pardiso          22          10
+ pardecomp:  0.000000000000000E+000  7.812500000000000E-003
+ done pardiso 22, error=           0
+ back from pard_gg
+Decomp :   0.04 s
+ Process ID, MemMB : 22652 108
+ PASSMBMEM 108
+Time 22:18:45          0.00
+ dsT:  0.000000000000000E+000  0.000000000000000E+000
+  GNORM=   16730.4019061396     
+ idVolOpt           0
+ SumRnew1=   20887.3140099705     
+ SumRnew2=   20887.3140099705     
+ iOutbal, |SC|           2   2706.10764085485        187.029932748505     
+ SumRnew3=   10443.6570049853     
+ SumRload1,:   671.272547487387     
+ pardiso mtype           2
+ SumRnew1=   10198.7114806635     
+ SumRnew2=   10198.7114806635     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  5.954894498759853E-014
+ ITER=    1 ERROR = 6.711E-02  ERRLOC= 1.060E-02  NPLAS=  8253  NINAC=  4272
+            FACTOR= 1.000E+00  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 4.460E-01  EGLM  = 5.955E-14  NPLBM=     0
+
+ iTest :            1
+ iTest, MakMat           1 F
+ idVolOpt           0
+ SumRnew1=   5221.82850249263     
+ SumRnew2=   5221.82850249263     
+ SumRload1,:   335.636273743693     
+ pardiso mtype           2
+ SumRnew1=   5086.38599172073     
+ SumRnew2=   5086.38599172073     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  3.656797780502114E-014
+ ITER=    1 ERROR = 3.245E-02  ERRLOC= 5.379E-03  NPLAS=  7810  NINAC=   889
+            FACTOR= 1.000E+00  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 4.460E-01  EGLM  = 3.657E-14  NPLBM=     0
+
+ iTest :            2
+ iTest, MakMat           2 F
+ idVolOpt           0
+ SumRnew1=  6.517009154549669E-014
+ SumRnew2=  6.517009154549669E-014
+ SumRload1,:  8.326672684688674E-015
+ pardiso mtype           2
+ SumRnew1=  2.339354321070103E-013
+ SumRnew2=  2.339354321070103E-013
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  1.924178323036726E-020
+ ITER=    1 ERROR = 2.008E-17  ERRLOC= 0.000E+00  NPLAS=     0  NINAC=     0
+            FACTOR= 1.000E+00  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 4.460E-01  EGLM  = 1.924E-20  NPLBM=     0
+
+ iTest :            3
+  Estimation of step size at step 1
+ABC  :  -5.50283E-04 -3.91905E-03  3.12500E-04  1.60468E-05
+X12  :  -7.20075E+00  7.88653E-02
+Step size :    0.07887
+ABC  :   4.00885E-05 -6.82440E-04  3.12500E-04  4.15614E-07
+X12  :   1.65524E+01  4.70944E-01
+Step size :    0.47094
+Step size :    0.07887
+ iTest, MakMat           0 F
+ idVolOpt           0
+ SumRnew1=   1647.28411504007     
+ SumRnew2=   1647.28411504007     
+ SumRload1,:   105.880210716477     
+ pardiso mtype           2
+ SumRnew1=   1603.58859202697     
+ SumRnew2=   1603.58859202697     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  9.395370743652899E-015
+ ITER=    1 ERROR = 1.003E-02  ERRLOC= 1.720E-03  NPLAS=  7446  NINAC=    50
+            FACTOR= 1.000E+00  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 4.460E-01  EGLM  = 9.395E-15  NPLBM=     0
+
+ SumRload1,:   108.020050393149     
+ pardiso mtype           2
+ pardiso mtype           2
+ du (dutote)
+ SumRnew1=   1546.85951005544     
+ SumRnew2=   1546.85951005544     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  9.864721355572525E-015
+ ITER=    2 ERROR = 6.325E-03  ERRLOC= 8.106E-04  NPLAS=  7506  NINAC=     4
+            FACTOR= 9.883E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 4.460E-01  EGLM  = 9.865E-15  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           2
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  6.324742185219377E-003  1.002653639933934E-002
+ RNORM=   53.9534717369499        85.5317785925674     
+ ICHK :            1 F
+ ICHK :            3 F
+  A SCALE UP ITER=           2
+ UpDown 6592   2.00000000000000                2
+ SumRnew1=   3100.45405177407     
+ SumRnew2=   3100.45405177407     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  1.915754524033324E-014
+ ITER=    3 ERROR = 1.345E-02  ERRLOC= 2.722E-03  NPLAS=  7688  NINAC=   211
+            FACTOR= 9.883E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 4.460E-01  EGLM  = 1.916E-14  NPLBM=     0
+
+ SumRload1,:   143.522962423090     
+ pardiso mtype           2
+ pardiso mtype           2
+ du (dutote)
+ SumRnew1=   3030.77662663753     
+ SumRnew2=   3030.77662663753     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  1.897729848996607E-014
+ ITER=    4 ERROR = 9.626E-03  ERRLOC= 1.065E-03  NPLAS=  7697  NINAC=    15
+            FACTOR= 9.779E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 4.460E-01  EGLM  = 1.898E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           2
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  9.625660389315739E-003  1.344903973915028E-002
+ RNORM=   82.1120894031211        114.727583228785     
+ ICHK :            1 F
+ UITIT,ULTNIL: F F
+ CSP :   8.84973E-01  2.57148E-01  2.90571E-01
+ ICHK :            2 F
+ ISTSUB, NSUBT  :           1           1
+ ULTLEV, ULTCONS: F F
+ 1-Pstage  :            1  0.154241379962421       0.157730583669469     
+  0.977878711750917       0.977878711750917             2139
+ Tot, Av Gb: 476.135 15.746
+ iSpace:    16510612          -1
+  99  1661631        4   415407 B/ms
+ Tot, Av Gb: 476.135 15.744
+ Used kB:         1623  kB        1623
+ AddCxx
+ bkhead:$$S000001H##         232
+ end cxx
+ iRes:            1
+ WrtLog:  T
+ iMult:Active
+   0.000E+00  0.000E+00  0.000E+00   1.000E+00  0.000E+00  0.000E+00
+   0.000E+00  0.000E+00  0.000E+00   0.000E+00  0.000E+00
+ IMult =            4
+ Call Step_Ready
+ After Call Step_Ready
+Time for this step :      0.178 s
+
+NSTEP=   2
+ LoadAc start Active
+   0.000E+00  0.000E+00  0.000E+00   1.000E+00  0.000E+00  0.000E+00
+   0.000E+00  0.000E+00  0.000E+00   0.000E+00  0.000E+00
+ LoadAc end   Active
+   0.000E+00  0.000E+00  0.000E+00   1.000E+00  0.000E+00  0.000E+00
+   0.000E+00  0.000E+00  0.000E+00   0.000E+00  0.000E+00
+Active   0.000E+00  0.000E+00  0.000E+00   1.000E+00  0.000E+00  0.000E+00
+         0.000E+00  0.000E+00  0.000E+00   0.000E+00  0.000E+00
+ SumG:    25307620.7912621     
+ UpDown 4697   1.00000000000000     
+ Updown DSA(i) :   0.000000000000000E+000
+ ICHK :            3 F
+ iTest, MakMat           0 T
+Time 22:18:45          0.00
+ FMAMAT T  0.000000000000000E+000
+ SymDif/Sum   :   1.40387E-06  1.66346E+10  4.07459E+09
+ SymDif/Sum Bm:   2.51302E-07  8.41510E+09  2.98503E+09
+ Determine_Sp_i0A_i1A           0               9958528             155002500
+        1446          16
+           1           0         122
+        2776           0        1446
+ bound3n:           1
+ Time for forming matrix:
+Time 22:18:45          0.00
+ Process ID, MemMB : 22652 109
+ PASSMBMEM 109
+  iMat     :            3
+ iUsePardiso:           1
+ iUsePardiso:           1
+ Fill_Pard T           1
+ try SpMtx
+ Size iiA:       12451       14039
+ Size jjA:      348971      293814
+ Size  AA:      293814      293814
+ nnz:      293814
+ Size ia_Pard:       14039       12451
+ Size ja_Pard:      293814      348971
+ Size  a_Pard:      293814      293814
+ end fill           1
+ size amat  :     2081551
+ size a_pard:      293814
+ dasum a_Pard:   20635576530.7210           289650   20635576530.7201     
+ Filter SpMtx:           1
+ sym-pos-def
+ about to call pardiso_dec
+ Mem: 2 16204 (4077) MB (free) physical memory
+ Process ID, MemMB : 22652 109
+ call pardiso 22, ityp           2
+ sec0:   80325.7656250000     
+ size ia:       14039         2320516825280
+ size ja:      293814         2320513461312
+ size  a:      293814         2320532570496
+ pardiso          22           9
+ pardecomp:  0.000000000000000E+000  7.812500000000000E-003
+ done pardiso 22, error=           0
+ back from pard_gg
+Decomp :   0.00 s
+ Process ID, MemMB : 22652 109
+ PASSMBMEM 109
+Time 22:18:45          0.00
+ dsT:  0.000000000000000E+000  0.000000000000000E+000
+  GNORM=   16730.4019061396     
+ SumRnew1=   6236.82790038418     
+ SumRnew2=   6236.82790038418     
+ SumRnew1=   6117.57549978250     
+ SumRnew2=   6117.57549978250     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  3.582217597722796E-014
+ ITER=    1 ERROR = 1.337E-02  ERRLOC= 6.765E-03  NPLAS=  7996  NINAC=  1910
+            FACTOR= 9.779E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 8.850E-01  EGLM  = 3.582E-14  NPLBM=     0
+
+ SumRload1,:   265.705272180919     
+ pardiso mtype           2
+ pardiso mtype           2
+ du (dutote)
+ SumRnew1=   5939.63219725212     
+ SumRnew2=   5939.63219725212     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  2.504625583169572E-014
+ ITER=    2 ERROR = 8.975E-03  ERRLOC= 1.568E-03  NPLAS=  8006  NINAC=    63
+            FACTOR= 9.468E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 8.850E-01  EGLM  = 2.505E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           2
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  8.975060221374056E-003  1.336903418270496E-002
+ RNORM=   143.071721924542        213.116201318906     
+ ICHK :            1 F
+ ICHK :            3 F
+  A SCALE UP ITER=           2
+ UpDown 6592   2.00000000000000                2
+ SumRnew1=   8919.85902632338     
+ SumRnew2=   8919.85902632338     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  5.416757729240234E-014
+ ITER=    3 ERROR = 1.642E-02  ERRLOC= 8.556E-03  NPLAS=  8224  NINAC=  3500
+            FACTOR= 9.468E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 8.850E-01  EGLM  = 5.417E-14  NPLBM=     0
+
+ SumRload1,:   329.157252482163     
+ pardiso mtype           2
+ pardiso mtype           2
+ du (dutote)
+ SumRnew1=   8695.97098224249     
+ SumRnew2=   8695.97098224249     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  4.194838361573707E-014
+ ITER=    4 ERROR = 1.094E-02  ERRLOC= 1.524E-03  NPLAS=  8229  NINAC=    85
+            FACTOR= 9.278E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 8.850E-01  EGLM  = 4.195E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           2
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  1.094287517776990E-002  1.641984473535721E-002
+ RNORM=   174.440723056138        261.749269874150     
+ SumRload1,:   220.027682186856     
+ pardiso mtype           2
+ SumRnew1=   8602.20976414359     
+ SumRnew2=   8602.20976414359     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  4.576772617833899E-014
+ ITER=    5 ERROR = 7.837E-03  ERRLOC= 1.304E-03  NPLAS=  8225  NINAC=    78
+            FACTOR= 9.226E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 8.850E-01  EGLM  = 4.577E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           3
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  7.837392180081049E-003  1.094287517776990E-002
+ RNORM=   124.936119306670        174.440723056138     
+ ICHK :            1 F
+ UITIT,ULTNIL: F F
+ CSP :   7.28214E-01  1.08807E+00  1.49416E+00
+ ICHK :            2 F
+ ISTSUB, NSUBT  :           1           1
+ ULTLEV, ULTCONS: F F
+ 1-Pstage  :            2  0.445298254852418       0.315461167338939     
+  0.922639313564951       0.922639313564951             2138
+ Tot, Av Gb: 476.135 15.744
+ iSpace:    16508980        1623
+  99  1661751        4   415437 B/ms
+ Tot, Av Gb: 476.135 15.743
+ Used kB:         1623  kB        1623
+ AddCxx
+ bkhead:$$S000002H##         232
+ end cxx
+ iRes:            1
+ WrtLog:  T
+ Call Step_Ready
+ After Call Step_Ready
+Time for this step :      0.115 s
+
+NSTEP=   3
+ LoadAc end   Active
+   0.000E+00  0.000E+00  0.000E+00   1.000E+00  0.000E+00  0.000E+00
+   0.000E+00  0.000E+00  0.000E+00   0.000E+00  0.000E+00
+Active   0.000E+00  0.000E+00  0.000E+00   1.000E+00  0.000E+00  0.000E+00
+         0.000E+00  0.000E+00  0.000E+00   0.000E+00  0.000E+00
+ SumG:    52022763.7665061     
+ UpDown 4697   1.00000000000000     
+ Updown DSA(i) :   0.000000000000000E+000
+ ICHK :            3 F
+ iTest, MakMat           0 T
+Time 22:18:45          0.00
+ FMAMAT T  0.000000000000000E+000
+ SymDif/Sum   :   1.39732E-06  1.65691E+10  4.05856E+09
+ SymDif/Sum Bm:   2.51302E-07  8.41510E+09  2.98503E+09
+ Determine_Sp_i0A_i1A           0               9958528             155002500
+        1446          16
+           1           0         122
+        2776           0        1446
+ bound3n:           1
+ Time for forming matrix:
+Time 22:18:45          0.00
+ Process ID, MemMB : 22652 109
+ PASSMBMEM 109
+  iMat     :            3
+ iUsePardiso:           1
+ size amat  :     2081551
+ size a_pard:      293814
+Decomp :   0.01 s
+ Process ID, MemMB : 22652 109
+ PASSMBMEM 109
+Time 22:18:45          0.00
+ dsT:  0.000000000000000E+000  0.000000000000000E+000
+  GNORM=   16730.4019061396     
+ SumRnew1=   14650.8838680145     
+ SumRnew2=   14650.8838680145     
+ SumRnew1=   14532.0798882284     
+ SumRnew2=   14532.0798882284     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  8.040094871019678E-014
+ ITER=    1 ERROR = 3.482E-02  ERRLOC= 2.096E-02  NPLAS=  8357  NINAC=  5621
+            FACTOR= 9.226E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 7.282E-01  EGLM  = 8.040E-14  NPLBM=     0
+
+ SumRload1,:   568.907685493313     
+ pardiso mtype           2
+ pardiso mtype           2
+ du (dutote)
+ SumRnew1=   13606.6462919020     
+ SumRnew2=   13606.6462919020     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  4.277539278220506E-014
+ ITER=    2 ERROR = 1.951E-02  ERRLOC= 1.379E-03  NPLAS=  8328  NINAC=   122
+            FACTOR= 8.089E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 7.282E-01  EGLM  = 4.278E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           2
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  1.950749932413210E-002  3.481954809808992E-002
+ RNORM=   259.349689331265        462.921404319793     
+ SumRload1,:   326.014924804946     
+ pardiso mtype           2
+ SumRnew1=   13278.2075442310     
+ SumRnew2=   13278.2075442310     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  4.172880842875119E-014
+ ITER=    3 ERROR = 1.350E-02  ERRLOC= 1.125E-03  NPLAS=  8303  NINAC=   110
+            FACTOR= 7.707E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 7.282E-01  EGLM  = 4.173E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           3
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  1.349666539911123E-002  1.950749932413210E-002
+ RNORM=   179.436426991816        259.349689331265     
+ SumRload1,:   226.693371699973     
+ pardiso mtype           2
+ SumRnew1=   13094.6959582441     
+ SumRnew2=   13094.6959582441     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  5.099331226425549E-014
+ ITER=    4 ERROR = 1.046E-02  ERRLOC= 7.986E-04  NPLAS=  8293  NINAC=    77
+            FACTOR= 7.486E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 7.282E-01  EGLM  = 5.099E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           4
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  1.046386608598911E-002  1.349666539911123E-002
+ RNORM=   139.115750999826        179.436426991816     
+ SumRload1,:   175.991905853092     
+ pardiso mtype           2
+ SumRnew1=   12973.5025878640     
+ SumRnew2=   12973.5025878640     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  5.943789546279207E-014
+ ITER=    5 ERROR = 8.175E-03  ERRLOC= 6.034E-04  NPLAS=  8288  NINAC=    61
+            FACTOR= 7.349E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 7.282E-01  EGLM  = 5.944E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           5
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  8.174601427648091E-003  1.046386608598911E-002
+ RNORM=   108.680272414249        139.115750999826     
+ ICHK :            1 F
+ UITIT,ULTNIL: F F
+ CSP :   4.87075E-01  7.57249E-01  1.55469E+00
+ ICHK :            2 F
+ ISTSUB, NSUBT  :           1           1
+ ULTLEV, ULTCONS: F F
+ 1-Pstage  :            3  0.677116048885166       0.315461167338939     
+  0.734853661983941       0.734853661983941             2217
+ Tot, Av Gb: 476.135 15.743
+ iSpace:    16507356        1623
+  99  1661751        5   332350 B/ms
+ Tot, Av Gb: 476.135 15.741
+ Used kB:         1623  kB        1623
+ AddCxx
+ bkhead:$$S000003H##         232
+ end cxx
+ iRes:            1
+ WrtLog:  T
+ Call Step_Ready
+ After Call Step_Ready
+Time for this step :      0.112 s
+
+NSTEP=   4
+ LoadAc end   Active
+   0.000E+00  0.000E+00  0.000E+00   1.000E+00  0.000E+00  0.000E+00
+   0.000E+00  0.000E+00  0.000E+00   0.000E+00  0.000E+00
+Active   0.000E+00  0.000E+00  0.000E+00   1.000E+00  0.000E+00  0.000E+00
+         0.000E+00  0.000E+00  0.000E+00   0.000E+00  0.000E+00
+ SumG:    70902146.2341846     
+ UpDown 4697   1.00000000000000     
+ Updown DSA(i) :   0.000000000000000E+000
+ ICHK :            3 F
+ iTest, MakMat           0 T
+Time 22:18:45          0.00
+ FMAMAT T  0.000000000000000E+000
+ SymDif/Sum   :   1.39543E-06  1.65089E+10  4.04384E+09
+ SymDif/Sum Bm:   2.51302E-07  8.41510E+09  2.98503E+09
+ Determine_Sp_i0A_i1A           1               9958528             155002500
+        1446          16
+           1           0         122
+        2776           0        1446
+ bound3n:           0
+ Time for forming matrix:
+Time 22:18:45          0.00
+ Process ID, MemMB : 22652 109
+ PASSMBMEM 109
+  iMat     :            3
+ iUsePardiso:           1
+ size amat  :     2081551
+ size a_pard:      293814
+Decomp :   0.01 s
+ Process ID, MemMB : 22652 109
+ PASSMBMEM 109
+Time 22:18:46          1.00
+ dsT:  0.000000000000000E+000  0.000000000000000E+000
+  GNORM=   16730.4019061396     
+ SumRnew1=   17783.9229331297     
+ SumRnew2=   17783.9229331297     
+ SumRnew1=   17808.9435938183     
+ SumRnew2=   17808.9435938183     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  1.160007771416609E-013
+ ITER=    1 ERROR = 5.128E-02  ERRLOC= 2.583E-02  NPLAS=  8365  NINAC=  5919
+            FACTOR= 7.349E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 4.871E-01  EGLM  = 1.160E-13  NPLBM=     0
+
+ SumRload1,:   583.563186320364     
+ pardiso mtype           2
+ pardiso mtype           2
+ du (dutote)
+ SumRnew1=   16954.1995186516     
+ SumRnew2=   16954.1995186516     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  3.962555024803350E-014
+ ITER=    2 ERROR = 2.858E-02  ERRLOC= 1.300E-03  NPLAS=  8355  NINAC=   147
+            FACTOR= 6.348E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 4.871E-01  EGLM  = 3.963E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           2
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  2.857888090170447E-002  5.127502290997923E-002
+ RNORM=   263.621526770949        473.502496391668     
+ SumRload1,:   328.237413872731     
+ pardiso mtype           2
+ SumRnew1=   16639.5282326908     
+ SumRnew2=   16639.5282326908     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  4.498864067716893E-014
+ ITER=    3 ERROR = 1.804E-02  ERRLOC= 9.338E-04  NPLAS=  8344  NINAC=   136
+            FACTOR= 6.017E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 4.871E-01  EGLM  = 4.499E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           3
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  1.803588780620865E-002  2.857888090170447E-002
+ RNORM=   166.369295442170        263.621526770949     
+ SumRload1,:   211.836344743084     
+ pardiso mtype           2
+ SumRnew1=   16473.5722151202     
+ SumRnew2=   16473.5722151202     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  4.140569947312144E-014
+ ITER=    4 ERROR = 1.305E-02  ERRLOC= 5.830E-04  NPLAS=  8347  NINAC=    66
+            FACTOR= 5.837E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 4.871E-01  EGLM  = 4.141E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           4
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  1.305335616384286E-002  1.803588780620865E-002
+ RNORM=   120.408692461852        166.369295442170     
+ SumRload1,:   154.766707510675     
+ pardiso mtype           2
+ SumRnew1=   16378.5219545879     
+ SumRnew2=   16378.5219545879     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  3.770438013858690E-014
+ ITER=    5 ERROR = 1.031E-02  ERRLOC= 4.367E-04  NPLAS=  8348  NINAC=    40
+            FACTOR= 5.732E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 4.871E-01  EGLM  = 3.770E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           5
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  1.030759356829082E-002  1.305335616384286E-002
+ RNORM=   95.0808243035571        120.408692461852     
+ SumRload1,:   123.230737394557     
+ pardiso mtype           2
+ SumRnew1=   16324.5567381993     
+ SumRnew2=   16324.5567381993     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  4.414456084745234E-014
+ ITER=    6 ERROR = 8.856E-03  ERRLOC= 3.870E-04  NPLAS=  8346  NINAC=    33
+            FACTOR= 5.671E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 4.871E-01  EGLM  = 4.414E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           6
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  8.856258196079556E-003  1.030759356829082E-002
+ RNORM=   81.6932025840446        95.0808243035571     
+ ICHK :            1 F
+ UITIT,ULTNIL: F F
+ CSP :   2.98292E-01  5.35916E-01  1.79662E+00
+ ICHK :            2 F
+ ISTSUB, NSUBT  :           1           1
+ ULTLEV, ULTCONS: F F
+ 1-Pstage  :            4  0.856015235248075       0.315461167338939     
+  0.567103671973341       0.567103671973341             2217
+ Tot, Av Gb: 476.135 15.741
+ iSpace:    16505728        1623
+  99  1661871        4   415467 B/ms
+ Tot, Av Gb: 476.135 15.740
+ Used kB:         1623  kB        1623
+ AddCxx
+ bkhead:$$S000004H##         232
+ end cxx
+ iRes:            1
+ WrtLog:  T
+ Call Step_Ready
+ After Call Step_Ready
+Time for this step :      0.130 s
+
+NSTEP=   5
+ LoadAc end   Active
+   0.000E+00  0.000E+00  0.000E+00   1.000E+00  0.000E+00  0.000E+00
+   0.000E+00  0.000E+00  0.000E+00   0.000E+00  0.000E+00
+Active   0.000E+00  0.000E+00  0.000E+00   1.000E+00  0.000E+00  0.000E+00
+         0.000E+00  0.000E+00  0.000E+00   0.000E+00  0.000E+00
+ SumG:    70318448.7474959     
+ UpDown 4697   1.00000000000000     
+ Updown DSA(i) :   0.000000000000000E+000
+ ICHK :            3 F
+ UpDown 6250  0.853628086630211     
+ iTest, MakMat           0 T
+Time 22:18:46          0.00
+ FMAMAT T  0.000000000000000E+000
+ SymDif/Sum   :   1.38821E-06  1.64480E+10  4.02896E+09
+ SymDif/Sum Bm:   2.51302E-07  8.41510E+09  2.98503E+09
+ Determine_Sp_i0A_i1A           2               9958528             155002500
+        1446          16
+           1           0         122
+        2776           0        1446
+ bound3n:           0
+ Time for forming matrix:
+Time 22:18:46          0.00
+ Process ID, MemMB : 22652 109
+ PASSMBMEM 109
+  iMat     :            3
+ iUsePardiso:           1
+ size amat  :     2081551
+ size a_pard:      293814
+Decomp :   0.01 s
+ Process ID, MemMB : 22652 109
+ PASSMBMEM 109
+Time 22:18:46          0.00
+ dsT:  0.000000000000000E+000  0.000000000000000E+000
+  GNORM=   16730.4019061396     
+ SumRnew1=   19492.1840242706     
+ SumRnew2=   19492.1840242706     
+ SumRnew1=   19568.5726542803     
+ SumRnew2=   19568.5726542803     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  8.064943151758868E-014
+ ITER=    1 ERROR = 6.060E-02  ERRLOC= 2.507E-02  NPLAS=  8385  NINAC=  5763
+            FACTOR= 5.671E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.983E-01  EGLM  = 8.065E-14  NPLBM=     0
+
+ SumRload1,:   463.170639571144     
+ pardiso mtype           2
+ pardiso mtype           2
+ du (dutote)
+ SumRnew1=   18863.1547156329     
+ SumRnew2=   18863.1547156329     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  3.286247699092920E-014
+ ITER=    2 ERROR = 3.292E-02  ERRLOC= 9.209E-04  NPLAS=  8372  NINAC=   117
+            FACTOR= 4.698E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.983E-01  EGLM  = 3.286E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           2
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  3.292499876723790E-002  6.059637500157700E-002
+ RNORM=   201.824461982402        373.213721959808     
+ SumRload1,:   254.777380271451     
+ pardiso mtype           2
+ SumRnew1=   18656.5818179076     
+ SumRnew2=   18656.5818179076     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  3.527429257820542E-014
+ ITER=    3 ERROR = 2.284E-02  ERRLOC= 6.639E-04  NPLAS=  8366  NINAC=    63
+            FACTOR= 4.440E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.983E-01  EGLM  = 3.527E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           3
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  2.283525670408981E-002  3.292499876723790E-002
+ RNORM=   139.799549675997        201.824461982402     
+ SumRload1,:   179.843838507662     
+ pardiso mtype           2
+ SumRnew1=   18561.3150616594     
+ SumRnew2=   18561.3150616594     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  4.017280029616745E-014
+ ITER=    4 ERROR = 1.828E-02  ERRLOC= 4.485E-04  NPLAS=  8364  NINAC=    47
+            FACTOR= 4.322E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.983E-01  EGLM  = 4.017E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           4
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  1.828033461747717E-002  2.283525670408981E-002
+ RNORM=   111.848866243834        139.799549675997     
+ SumRload1,:   145.539043780347     
+ pardiso mtype           2
+ SumRnew1=   18506.2268182833     
+ SumRnew2=   18506.2268182833     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  3.893108117393383E-014
+ ITER=    5 ERROR = 1.555E-02  ERRLOC= 3.777E-04  NPLAS=  8361  NINAC=    35
+            FACTOR= 4.257E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.983E-01  EGLM  = 3.893E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           5
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  1.554850422524353E-002  1.828033461747717E-002
+ RNORM=   95.1037895752973        111.848866243834     
+ SumRload1,:   123.955577613947     
+ pardiso mtype           2
+ SumRnew1=   18472.9834491382     
+ SumRnew2=   18472.9834491382     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  4.646874284813628E-014
+ ITER=    6 ERROR = 1.383E-02  ERRLOC= 3.534E-04  NPLAS=  8354  NINAC=    28
+            FACTOR= 4.220E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.983E-01  EGLM  = 4.647E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           6
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  1.382601171079274E-002  1.554850422524353E-002
+ RNORM=   84.5527564047518        95.1037895752973     
+ SumRload1,:   109.811841968878     
+ pardiso mtype           2
+ SumRnew1=   18450.1349274218     
+ SumRnew2=   18450.1349274218     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  3.349273987056869E-014
+ ITER=    7 ERROR = 1.238E-02  ERRLOC= 3.341E-04  NPLAS=  8352  NINAC=    24
+            FACTOR= 4.199E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.983E-01  EGLM  = 3.349E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           7
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  1.237788703625049E-002  1.382601171079274E-002
+ RNORM=   75.6887601329747        84.5527564047518     
+ SumRload1,:   98.2521388947038     
+ pardiso mtype           2
+ SumRnew1=   18434.4023409053     
+ SumRnew2=   18434.4023409053     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  3.889062991655196E-014
+ ITER=    8 ERROR = 1.122E-02  ERRLOC= 3.059E-04  NPLAS=  8351  NINAC=    20
+            FACTOR= 4.186E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.983E-01  EGLM  = 3.889E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           8
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  1.121519318353551E-002  1.237788703625049E-002
+ RNORM=   68.5747632962521        75.6887601329747     
+ SumRload1,:   89.2958719307922     
+ pardiso mtype           2
+ SumRnew1=   18421.3218345629     
+ SumRnew2=   18421.3218345629     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  4.336268742894776E-014
+ ITER=    9 ERROR = 1.004E-02  ERRLOC= 2.763E-04  NPLAS=  8351  NINAC=    17
+            FACTOR= 4.178E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.983E-01  EGLM  = 4.336E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           9
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  1.003918493898422E-002  1.121519318353551E-002
+ RNORM=   61.3819008919596        68.5747632962521     
+ SumRload1,:   80.1721064938854     
+ pardiso mtype           2
+ SumRnew1=   18412.9216561030     
+ SumRnew2=   18412.9216561030     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  4.770544221536023E-014
+ ITER=   10 ERROR = 9.307E-03  ERRLOC= 2.570E-04  NPLAS=  8348  NINAC=    17
+            FACTOR= 4.174E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.983E-01  EGLM  = 4.771E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0          10
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  9.306921896991498E-003  1.003918493898422E-002
+ RNORM=   56.9033481719397        61.3819008919596     
+ ICHK :            1 F
+ UITIT,ULTNIL: F F
+ CSP :   2.33416E-01  4.45085E-01  1.90684E+00
+ ICHK :            2 F
+ ISTSUB, NSUBT  :           1           1
+ ULTLEV, ULTCONS: F F
+ 1-Pstage  :            5  0.968403781823384       0.269286512681671     
+  0.417356760485685       0.417356760485685             2212
+ Tot, Av Gb: 476.135 15.739
+ iSpace:    16503996        1623
+  99  1662351        5   332470 B/ms
+ Tot, Av Gb: 476.135 15.738
+ Used kB:         1624  kB        1624
+ AddCxx
+ bkhead:$$S000005H##         232
+ end cxx
+ iRes:            1
+ WrtLog:  T
+ Call Step_Ready
+ After Call Step_Ready
+Time for this step :      0.170 s
+
+NSTEP=   6
+ LoadAc end   Active
+   0.000E+00  0.000E+00  0.000E+00   1.000E+00  0.000E+00  0.000E+00
+   0.000E+00  0.000E+00  0.000E+00   0.000E+00  0.000E+00
+Active   0.000E+00  0.000E+00  0.000E+00   1.000E+00  0.000E+00  0.000E+00
+         0.000E+00  0.000E+00  0.000E+00   0.000E+00  0.000E+00
+ SumG:    76535807.6326866     
+ UpDown 4697   1.00000000000000     
+ Updown DSA(i) :   0.000000000000000E+000
+ ICHK :            3 F
+ UpDown 6250  0.460850343336213     
+ iTest, MakMat           0 T
+Time 22:18:46          0.00
+ FMAMAT T  0.000000000000000E+000
+ SymDif/Sum   :   1.39084E-06  1.64025E+10  4.01787E+09
+ SymDif/Sum Bm:   2.51302E-07  8.41510E+09  2.98503E+09
+ Determine_Sp_i0A_i1A           0               9958528             155002500
+        1446          16
+           1           0         122
+        2776           0        1446
+ bound3n:           1
+ Time for forming matrix:
+Time 22:18:46          0.00
+ Process ID, MemMB : 22652 109
+ PASSMBMEM 109
+  iMat     :            3
+ iUsePardiso:           1
+ size amat  :     2081551
+ size a_pard:      293814
+Decomp :   0.01 s
+ Process ID, MemMB : 22652 109
+ PASSMBMEM 109
+Time 22:18:46          0.00
+ dsT:  0.000000000000000E+000  0.000000000000000E+000
+  GNORM=   16730.4019061396     
+ SumRnew1=   19483.9371559780     
+ SumRnew2=   19483.9371559780     
+ SumRnew1=   19544.1587158085     
+ SumRnew2=   19544.1587158085     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  6.676420301702689E-014
+ ITER=    1 ERROR = 3.630E-02  ERRLOC= 1.272E-02  NPLAS=  8372  NINAC=  3827
+            FACTOR= 4.174E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.334E-01  EGLM  = 6.676E-14  NPLBM=     0
+
+ SumRload1,:   228.796617280809     
+ pardiso mtype           2
+ pardiso mtype           2
+ du (dutote)
+ SumRnew1=   19299.7801291274     
+ SumRnew2=   19299.7801291274     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  1.595612612610002E-014
+ ITER=    2 ERROR = 2.105E-02  ERRLOC= 4.376E-04  NPLAS=  8371  NINAC=    34
+            FACTOR= 3.524E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.334E-01  EGLM  = 1.596E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           2
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  2.104735004689073E-002  3.630245421924043E-002
+ RNORM=   106.660877164589        184.294845480306     
+ SumRload1,:   136.711190067455     
+ pardiso mtype           2
+ SumRnew1=   19229.9965428761     
+ SumRnew2=   19229.9965428761     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  1.899320897538422E-014
+ ITER=    3 ERROR = 1.544E-02  ERRLOC= 3.380E-04  NPLAS=  8368  NINAC=    26
+            FACTOR= 3.377E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.334E-01  EGLM  = 1.899E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           3
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  1.544372943697487E-002  2.104735004689073E-002
+ RNORM=   78.2322545730220        106.660877164589     
+ SumRload1,:   101.496289866409     
+ pardiso mtype           2
+ SumRnew1=   19204.3346046372     
+ SumRnew2=   19204.3346046372     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  1.836142015380538E-014
+ ITER=    4 ERROR = 1.372E-02  ERRLOC= 2.852E-04  NPLAS=  8364  NINAC=    21
+            FACTOR= 3.315E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.334E-01  EGLM  = 1.836E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           4
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  1.371531563893774E-002  1.544372943697487E-002
+ RNORM=   69.4650021149336        78.2322545730220     
+ SumRload1,:   90.5514635654788     
+ pardiso mtype           2
+ SumRnew1=   19195.7537733639     
+ SumRnew2=   19195.7537733639     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  2.194301652905068E-014
+ ITER=    5 ERROR = 1.174E-02  ERRLOC= 2.516E-04  NPLAS=  8360  NINAC=    22
+            FACTOR= 3.333E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.334E-01  EGLM  = 2.194E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           5
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  1.173897319644493E-002  1.371531563893774E-002
+ RNORM=   59.4582158054663        69.4650021149336     
+ SumRload1,:   77.8144617685802     
+ pardiso mtype           2
+ SumRnew1=   19187.8063420680     
+ SumRnew2=   19187.8063420680     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  1.939036362147083E-014
+ ITER=    6 ERROR = 1.054E-02  ERRLOC= 2.324E-04  NPLAS=  8355  NINAC=    18
+            FACTOR= 3.333E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.334E-01  EGLM  = 1.939E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           6
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  1.053660723388006E-002  1.173897319644493E-002
+ RNORM=   53.3682530359669        59.4582158054663     
+ SumRload1,:   69.9166494850671     
+ pardiso mtype           2
+ SumRnew1=   19180.5252349830     
+ SumRnew2=   19180.5252349830     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  2.071353931185192E-014
+ ITER=    7 ERROR = 9.572E-03  ERRLOC= 2.170E-04  NPLAS=  8355  NINAC=    16
+            FACTOR= 3.330E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.334E-01  EGLM  = 2.071E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           7
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           1
+ isTHM= F
+ EGLN1=  9.572381620479749E-003  1.053660723388006E-002
+ RNORM=   48.4839514545662        53.3682530359669     
+ ICHK :            1 F
+ UpDown 6486  0.764642700446155     
+ SumRnew1=   19004.8829244501     
+ SumRnew2=   19004.8829244501     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  2.286118114121871E-014
+ ITER=    1 ERROR = 1.083E-02  ERRLOC= 3.145E-03  NPLAS=  8357  NINAC=   369
+            FACTOR= 3.330E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.334E-01  EGLM  = 2.286E-14  NPLBM=     0
+
+ SumRload1,:   70.8947732517810     
+ pardiso mtype           2
+ SumRnew1=   18996.5219563134     
+ SumRnew2=   18996.5219563134     
+  thermal line search relax=   1.20000000000000      F
+  ActiveUWC= F
+ EglMx:  2.100257721660973E-014
+ ITER=    2 ERROR = 9.467E-03  ERRLOC= 2.113E-04  NPLAS=  8353  NINAC=    13
+            FACTOR= 3.330E-01  ERRLCI= 0.000E+00  NPINT=     0  INACI=     0
+            CSP   = 2.334E-01  EGLM  = 2.100E-14  NPLBM=     0
+
+ EGLQtOld=  0.000000000000000E+000  0.000000000000000E+000
+ UWC_Div_Indication=           0           2
+ EGLQtOld=  0.000000000000000E+000
+ LADV0=           0
+ isTHM= F
+ EGLN1=  9.466977507496742E-003  1.082789454945418E-002
+ RNORM=   47.8475162265224        54.7257939235429     
+ UITIT,ULTNIL: F F
+ CSP :   2.59760E-01  1.00422E-01  3.86593E-01
+ ISTSUB, NSUBT  :           1           1
+ ULTLEV, ULTCONS: T F
+ Tot, Av Gb: 476.135 15.738
+ iSpace:    16502308        1624
+  99  1980007        4   495001 B/ms
+ Tot, Av Gb: 476.135 15.736
+ Used kB:         1934  kB        1934
+ AddCxx
+ bkhead:$$S000006H##         232
+ end cxx
+ iRes:            1
+ WrtLog:  T
+ Call Step_Ready
+ After Call Step_Ready
+Time for this step :      0.166 s
+Calculation time :       1.610 s
+Time 22:18:46          2.00
+ p_DLL_CE 3:        140721905991680       140721905995872
+ FFUninitialize
+ Prescribed ultimate state fully reached
+ Now: 02-04-2025 22:18:46.524
+Total time :       1.700 s
+CPU   time :       0.328 s
+ Process ID, MemMB : 22652 109
+ PASSMBMEM 109
+ Process ID, MemMB : 22652 109
+ PASSMBMEM 109
+ Calc_Ready 0
+ MyStop           0
+ Total cpu  :   0.328125000100000     
+ Total wall :    1.71600000000000     
+ 
+ +------+--------+-------------+--------+-------------+--------+----------+
+ | Task |  Count |       CPU   |    %   |  Wall clock |    %   | Name     |
+ +------+--------+-------------+--------+-------------+--------+----------+
+ |    0 |      1 |        0.33 | 100.00 |        1.72 | 100.00 | Total    |
+ +------+--------+-------------+--------+-------------+--------+----------+
+ |    1 |      7 |        0.02 |   4.76 |        0.14 |   8.45 | FrmMtx   |
+ |    5 |     43 |        0.05 |  14.29 |        0.27 |  15.85 | GetSig   |
+ |    6 |     63 |        0.02 |   4.76 |        0.10 |   5.94 | Bt_Sig   |
+ |    7 |      6 |        0.00 |   0.00 |        0.03 |   1.63 | WtXXX    |
+ |    8 |      7 |        0.00 |   0.00 |        0.00 |   0.12 | WtCXX    |
+ |   30 |      7 |        0.00 |   0.00 |        0.00 |   0.06 | mtx_scl2 |
+ |   42 |      1 |        0.00 |   0.00 |        0.00 |   0.12 | rd_wxx   |
+ |   43 |      1 |        0.00 |   0.00 |        0.00 |   0.00 | rd_lxx   |
+ |   44 |      1 |        0.00 |   0.00 |        0.02 |   1.22 | rd_xxx   |
+ |   51 |      2 |        0.06 |  19.05 |        0.13 |   7.81 | Reorder  |
+ |   52 |      7 |        0.02 |   4.76 |        0.06 |   3.21 | Factor   |
+ |   53 |     43 |        0.02 |   4.76 |        0.06 |   3.44 | Backsub  |
+ |   63 |      7 |        0.00 |   0.00 |        0.01 |   0.47 | fill_ijA |
+ |   64 |      1 |        0.00 |   0.00 |        0.00 |   0.00 | clean    |
+ |   67 |      2 |        0.00 |   0.00 |        0.01 |   0.47 | FillLMat |
+ |   71 |      6 |        0.00 |   0.00 |        0.00 |   0.06 | Genucht  |
+ |   88 |      1 |        0.14 |  42.86 |        0.54 |  31.24 | chk241   |
+ +------+--------+-------------+--------+-------------+--------+----------+
+ |  100 |      1 |        0.02 |   4.76 |        0.34 |  19.93 | Rest     |
+ +------+--------+-------------+--------+-------------+--------+----------+
+ OK

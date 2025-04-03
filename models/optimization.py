@@ -32,3 +32,4 @@ class ParticleConfig:
     best_position: Optional[InputData] = None 
     best_score: float = float("inf")
     Cost: float = float("inf")
+    best_penalty: float = float("inf")
