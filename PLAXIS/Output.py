@@ -9,6 +9,7 @@ from Config.config import MainConfig
 from dataclasses import dataclass
 import numpy as np
 
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logging.basicConfig(level=logging.DEBUG)
@@ -191,3 +192,9 @@ class PlaxisModelOutput:
     def _Check_Total_Displacement(self):
         """Check if all total displacements are below 10"""
         return all(data.utotal < 10 for data in self.__output_data)
+
+
+if __name__ == "__main__":
+    plaxis_model = PlaxisModelOutput()
+    plaxis_model.GetOutput()
+
