@@ -13,12 +13,12 @@ class PlaxisConfig:
         self.input = {
             'host': 'localhost',
             'port': 10000,
-            'password': 'vkrAnSku2/x^$f8~'
+            'password': 'vkrAnSku2/x$f8~'
         }
         self.output = {
             'host': 'localhost',
             'port': 10001, 
-            'password': 'vkrAnSku2/x^$f8~'
+            'password': 'vkrAnSku2/x$f8~'
         }
 
 class ModelGeometry:
