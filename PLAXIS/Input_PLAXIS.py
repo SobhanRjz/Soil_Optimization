@@ -6,6 +6,7 @@ from shapely.geometry import LineString, box
 import logging
 import time
 from Config.config import MainConfig
+from startServer import PlaxisServer
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -13,14 +14,16 @@ logger = logging.getLogger(__name__)
 
 class PlaxisModelInput:
     def __init__(self):
+        plaxis_model = PlaxisServer()
+        plaxis_model.Start_Server()
+
         self.config = MainConfig()
         self.Project_Name = "my_plaxis_project.p2dx"
         self.__host = self.config.PLAXIS_CONFIG.input['host']
         self.__port = self.config.PLAXIS_CONFIG.input['port']
         self.__password = self.config.PLAXIS_CONFIG.input['password']
-        self.__s_i = None
-
-        self.__g_i = None
+        self.__s_i = plaxis_model.s_i
+        self.__g_i = plaxis_model.g_i
         
 
         # Load geometry parameters from config
@@ -240,7 +243,7 @@ class PlaxisModelInput:
 
         while Count < 3:
             try:
-                self.__connect()
+                #self.__connect()
                 self.__create_project()
                 self.__define_geometry()
                 self.__create_soil_profile()
@@ -252,33 +255,17 @@ class PlaxisModelInput:
                 self.__run()
                 self.__save()
                 self.__Output_View()
-                Count += 1
+                break
             except Exception as e:
                 # Attempt to terminate PLAXIS process gracefully
                 logger.error(f"Error occurred during model creation: {str(e)}")
                 logger.info("Attempting to terminate PLAXIS process...")
-                
-                try:
-                    # Try to terminate any running PLAXIS processes
-                    import subprocess
-                    import platform
+                if str(e) == "Unsuccessful command:\nCannot show calculation results for a phase that has not been calculated":
+                    logger.info("PLAXIS process terminated. Will retry model creation.")
+                    self.config.MODEL_GEOMETRY.mesh_size = 0.08 # COARSE
+                else:
+                    logger.error(f"Error in creating model: {e}")
                     
-                    if platform.system() == 'Windows':
-                        # For Windows
-                        # subprocess.run(['taskkill', '/F', '/IM', 'Plaxis2DXInput.exe'], 
-                        #               shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
-                        subprocess.run(['taskkill', '/F', '/IM', 'Plaxis2DXOutput.exe'], 
-                                      shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
-                    else:
-                        # For Linux/Mac
-                        subprocess.run(['pkill', '-f', 'Plaxis2DX'], 
-                                      shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
-                    
-                    logger.info("PLAXIS processes terminated. Will retry model creation.")
-                    time.sleep(5)  # Wait for processes to fully terminate
-                except Exception as term_error:
-                    logger.error(f"Failed to terminate PLAXIS processes: {str(term_error)}")
-                logger.error(f"Error in creating model: {e}")
                 Count += 1
         logger.info(f"Total execution time: {time.time() - start_time:.2f} seconds")
 
